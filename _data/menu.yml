@@ -14,7 +14,7 @@ entries:
       show_more_text: See archive...
       show_more_url: archive.html
 
-  - title: 文章分类
+  - title: 按照分类
     post_list:
       category: example2
       show_more: true
@@ -26,17 +26,17 @@ entries:
 
   - title: 关于本blog
     entries:
-      - title: 本blog的github地址:<a href='https://github.com/shecannotsee/shecannotsee.github.io'>shecannotsee.github.io</a>
+      - title: 本blog项目的github地址:<a href='https://github.com/shecannotsee/shecannotsee.github.io'>shecannotsee.github.io</a>
       - title: 如何对blog进行自定义修改?
         url: how_to_modify_this_project
 
   
-  - title: another list
+  - title: 其他
     entries:
-      - title: with subitems
+      - title: 标题1
         entries:
-          - title: with subsubitems
-          - title: example page
+          - title: 子标题1
+          - title: 子标题2之我会传送到./about.md文件里
             url: about
 
   - title: PRO TIP
