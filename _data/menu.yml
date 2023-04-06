@@ -14,6 +14,22 @@ entries:
       show_more_text: See archive...
       show_more_url: archive.html
 
+  - title: 分类标题
+    entries:
+      - title: example2
+        post_list:
+          category: example2
+          show_more: true
+          show_more_text: See more posts...
+          show_more_url: example2-archive.html
+      - title: linux(由于测试没有linux暂时使用example2)
+        post_list:
+          category: example2
+          show_more: true
+          show_more_text: See more posts...
+          show_more_url: example2-archive.html
+        
+
   - title: 按照分类
     post_list:
       category: example2
