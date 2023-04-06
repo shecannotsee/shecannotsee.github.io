@@ -23,6 +23,13 @@ entries:
 
   - title: 这个不知道是干嘛的,下面写了个url-feed.xml然后点开是一堆html?
     url: feed.xml
+
+  - title: 关于本blog
+    entries:
+      - title: 本blog的github地址:<a href='https://github.com/shecannotsee/shecannotsee.github.io'>shecannotsee.github.io</a>
+      - title: 如何对blog进行自定义修改?
+        url: how_to_modify_this_project
+
   
   - title: another list
     entries:
@@ -31,6 +38,7 @@ entries:
           - title: with subsubitems
           - title: example page
             url: about
+
   - title: PRO TIP
     entries:
       - title: to edit this menu, edit _data/menu.yml file
