@@ -2,28 +2,26 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: info
+  - title: 主要内容
     entries:
-      - title: a (nearly) no-CSS, fast, minimalist Jekyll theme.
-      - title: github repo
-        url: https://github.com/riggraz/no-style-please
-      - title: "used by <a href='https://riggraz.dev'>riggraz.dev</a> and <a href='https://github.com/riggraz/no-style-please/network/dependents'>many others</a>"
+      - title: github地址:<a href='https://github.com/shecannotsee'>shecannotsee</a>
+      - title: 联系邮箱:shecannotsee@163.com
 
-  - title: all posts
+  - title: 所有文章
     post_list:
       limit: 5
       show_more: true
       show_more_text: See archive...
       show_more_url: archive.html
 
-  - title: posts by category
+  - title: 文章分类
     post_list:
       category: example2
       show_more: true
       show_more_text: See more posts...
       show_more_url: example2-archive.html
 
-  - title: rss
+  - title: 这个不知道是干嘛的,下面写了个url-feed.xml然后点开是一堆html?
     url: feed.xml
   
   - title: another list
