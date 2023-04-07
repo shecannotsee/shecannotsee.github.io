@@ -1,6 +1,6 @@
 ---
 layout: post
-markdown: kramdow
+categories: blog
 ---
 # 1.在ubuntu20.04上安装编译器解释器
 

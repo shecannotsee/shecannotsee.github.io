@@ -1,6 +1,6 @@
 ---
 layout: post
-markdown: kramdow
+categories: blog
 ---
 ```bash
 //预编译

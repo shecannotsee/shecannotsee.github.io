@@ -1,6 +1,6 @@
 ---
 layout: post
-markdown: kramdow
+categories: blog
 ---
 参考链接https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 

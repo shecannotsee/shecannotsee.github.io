@@ -1,6 +1,6 @@
 ---
 layout: post
-markdown: kramdow
+categories: blog
 ---
 ### 组合式的求值
 

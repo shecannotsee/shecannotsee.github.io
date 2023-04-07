@@ -11,22 +11,22 @@ entries:
     post_list:
       limit: 5
       show_more: true
-      show_more_text: See archive...
+      show_more_text: 查看所有...
       show_more_url: archive.html
 
   - title: 按照标签进行分类
     entries:
-      - title: example2
+      - title: 博客
         post_list:
           limit: 5
-          category: example2
+          category: blog
           show_more: true
           show_more_text: See more posts...
           show_more_url: example2-archive.html
-      - title: linux(由于测试没有linux暂时使用example2)
+      - title: 其他
         post_list:
           limit: 5
-          category: example2
+          category: example2其他
           show_more: true
           show_more_text: See more posts...
           show_more_url: example2-archive.html
