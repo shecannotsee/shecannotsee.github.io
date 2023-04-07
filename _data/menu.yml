@@ -7,56 +7,37 @@ entries:
       - title: github地址:<a href='https://github.com/shecannotsee'>shecannotsee</a>
       - title: 联系邮箱:shecannotsee@163.com
 
-  - title: 所有文章
+  - title: 最近文章
     post_list:
       limit: 5
       show_more: true
-      show_more_text: 查看所有...
+      show_more_text: 查看所有文章
       show_more_url: archive.html
 
-  - title: 按照标签进行分类
+  - title: 按照分类查看
     entries:
       - title: 博客
         post_list:
           limit: 5
           category: blog
           show_more: true
-          show_more_text: See more posts...
+          show_more_text: 查看其他[博客]
           show_more_url: example2-archive.html
-      - title: 其他
+      - title: 库的编译与使用
         post_list:
           limit: 5
-          category: example2其他
+          category: lib
           show_more: true
-          show_more_text: See more posts...
+          show_more_text: 查看其他[库的编译与使用]
           show_more_url: example2-archive.html
         
-
-  - title: 按照分类
-    post_list:
-      category: example2
-      show_more: true
-      show_more_text: See more posts...
-      show_more_url: example2-archive.html
-
-  - title: 这个不知道是干嘛的,下面写了个url-feed.xml然后点开是一堆html?
-    url: feed.xml
 
   - title: 关于本blog
     entries:
       - title: 本blog项目的github地址:<a href='https://github.com/shecannotsee/shecannotsee.github.io'>shecannotsee.github.io</a>
       - title: 如何对blog进行自定义修改?
-        url: how_to_modify_this_project
+        url: how_to_modify_this_project # 该标题绑定到./how_to_modify_this_project.md 文件
 
   
-  - title: 其他
-    entries:
-      - title: 标题1
-        entries:
-          - title: 子标题1
-          - title: 子标题2之我会传送到./about.md文件里
-            url: about
-
-  - title: PRO TIP
-    entries:
-      - title: to edit this menu, edit _data/menu.yml file
+  - title: 关于其他信息
+    url: about # 该标题绑定到./about.md 文件
