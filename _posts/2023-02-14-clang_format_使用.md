@@ -1,5 +1,6 @@
 ---
 layout: post
+markdown: kramdow
 ---
 参考链接https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 

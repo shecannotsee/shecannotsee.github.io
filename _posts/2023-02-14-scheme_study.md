@@ -1,5 +1,6 @@
 ---
 layout: post
+markdown: kramdow
 ---
 ### 组合式的求值
 

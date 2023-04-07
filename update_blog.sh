@@ -24,6 +24,7 @@ for file in ./notes/*.md; do
     # 创建新文件，包含添加的信息和原始文件内容
     echo "---" > "$new_name"
     echo "layout: post" >> "$new_name"
+    echo "markdown: kramdow" >> "$new_name"
     echo "---" >> "$new_name"
     cat "$file" >> "$new_name"
 done

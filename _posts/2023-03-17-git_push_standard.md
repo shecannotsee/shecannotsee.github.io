@@ -1,5 +1,6 @@
 ---
 layout: post
+markdown: kramdow
 ---
 ## git提交规范
 
