@@ -6,6 +6,8 @@ entries:
     entries:
       - title: github地址:<a href='https://github.com/shecannotsee'>shecannotsee</a>
       - title: 联系邮箱:shecannotsee@163.com
+      - title: 关于我
+        url: about_me # 该标题绑定到./about_me.md 文件
 
   - title: 最近文章
     post_list:
@@ -38,6 +40,3 @@ entries:
       - title: 如何对blog进行自定义修改?
         url: how_to_modify_this_project # 该标题绑定到./how_to_modify_this_project.md 文件
 
-  
-  - title: 关于我
-    url: about_me # 该标题绑定到./about_me.md 文件
