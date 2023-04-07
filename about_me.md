@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: 我是谁
 ---
 
 This is an example page!
