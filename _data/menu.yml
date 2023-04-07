@@ -22,7 +22,7 @@ entries:
           category: blog
           show_more: true
           show_more_text: 查看其他[博客]
-          show_more_url: example2-archive.html
+          show_more_url: about_me.html
       - title: 库的编译与使用
         post_list:
           limit: 5
@@ -39,5 +39,5 @@ entries:
         url: how_to_modify_this_project # 该标题绑定到./how_to_modify_this_project.md 文件
 
   
-  - title: 关于其他信息
-    url: about # 该标题绑定到./about.md 文件
+  - title: 关于我
+    url: about_me # 该标题绑定到./about_me.md 文件
