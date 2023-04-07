@@ -1,7 +1,6 @@
 ---
 layout: post
 custom_js: mouse_coords
-date: 2023-03-17
 ---
 ## git提交规范
 

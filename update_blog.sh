@@ -25,7 +25,6 @@ for file in ./notes/*.md; do
     echo "---" > "$new_name"
     echo "layout: post" >> "$new_name"
     echo "custom_js: mouse_coords" >> "$new_name"
-    echo "date: $modified_date" >> "$new_name"
     echo "---" >> "$new_name"
     cat "$file" >> "$new_name"
 done

@@ -1,7 +1,6 @@
 ---
 layout: post
 custom_js: mouse_coords
-date: 2023-02-14
 ---
 # 1.在ubuntu20.04上安装编译器解释器
 
