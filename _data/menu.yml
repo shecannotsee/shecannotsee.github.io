@@ -12,7 +12,7 @@ entries:
       limit: 5
       show_more: true
       show_more_text: 查看所有文章
-      show_more_url: archive.html
+      show_more_url: archive.html # 实际上会步入./archive.md 文件
 
   - title: 按照分类查看
     entries:
@@ -22,14 +22,14 @@ entries:
           category: blog
           show_more: true
           show_more_text: 查看其他[博客]
-          show_more_url: about_me.html
+          show_more_url: archive.html # # 实际上会步入./archive.md 文件
       - title: 库的编译与使用
         post_list:
           limit: 5
           category: lib
           show_more: true
           show_more_text: 查看其他[库的编译与使用]
-          show_more_url: example2-archive.html
+          show_more_url: lib.html # 实际上会步入./about_me.md 文件
         
 
   - title: 关于本blog
