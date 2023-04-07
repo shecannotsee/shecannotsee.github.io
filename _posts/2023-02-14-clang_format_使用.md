@@ -1,6 +1,5 @@
 ---
 layout: post
-custom_js: mouse_coords
 ---
 参考链接https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 

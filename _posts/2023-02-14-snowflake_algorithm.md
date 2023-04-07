@@ -1,6 +1,5 @@
 ---
 layout: post
-custom_js: mouse_coords
 ---
 雪花算法（Snowflake Algorithm）是一个用于生成唯一ID的算法。它在Twitter开源了这个项目，并在全球得到了广泛的应用。
 

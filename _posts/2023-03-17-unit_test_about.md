@@ -1,6 +1,5 @@
 ---
 layout: post
-custom_js: mouse_coords
 ---
 行为测试 逻辑测试 契约测试 安全测试 性能测试
 

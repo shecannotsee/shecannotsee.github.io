@@ -1,6 +1,5 @@
 ---
 layout: post
-custom_js: mouse_coords
 ---
 ## git提交规范
 
