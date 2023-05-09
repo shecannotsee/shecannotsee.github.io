@@ -28,3 +28,24 @@ Hello, world!12312312
 ```
 
 最后构建，查看pdf即可
+
+
+
+一个论文模板，里面包含了一个定积分公式
+
+```latex
+\documentclass{article}
+\title{Happy New Year C++23 Async Net}
+\author{shecanntsee}
+\date{September 2023}
+\begin{document}
+   \maketitle
+   Hello world!
+
+   Here is a formula for a definite integral:
+   \[
+      \int_{a}^{b} f(x) \, dx
+   \]
+\end{document}
+```
+
