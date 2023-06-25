@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: blog lib
+categories: blog
 ---
 首先是OpenXLSX的主页
 https://github.com/troldal/OpenXLSX

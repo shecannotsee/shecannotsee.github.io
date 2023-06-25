@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: blog lib
+categories: blog
 ---
 # glog
 根据官方文档安装即可

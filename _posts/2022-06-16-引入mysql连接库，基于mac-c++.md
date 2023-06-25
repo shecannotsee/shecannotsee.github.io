@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: blog lib
+categories: blog
 ---
 M1
 1.安装mysql

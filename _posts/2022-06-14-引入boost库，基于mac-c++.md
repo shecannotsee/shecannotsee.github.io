@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: blog lib
+categories: blog
 ---
 通过 https://www.boost.org/ 下载boost(1.79)
 

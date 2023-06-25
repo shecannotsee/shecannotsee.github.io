@@ -126,6 +126,22 @@ make install
 
 
 
+### docker环境
+
+```bash
+# 拉取镜像,最好与主机系统相同,便于同步和处理错误
+sudo docker pull ubuntu:20.04
+
+# 创建容器,-v用来做文件的映射,前者是真机,宿主机的目录,:后是docker里的目录
+sudo docker run -it --name cce \
+-v /home/shecannotsee/desktop/cross_compilation_environment/ubuntu20.04/in:/home/root/in  \
+-v /home/shecannotsee/desktop/cross_compilation_environment/ubuntu20.04/out:/home/root/out \
+ubuntu:20.04
+
+# 进入创建好的容器
+sudo docker exec -it cce /bin/bash
+```
+
 
 
 ### 配置文件与使用
