@@ -39,6 +39,9 @@ nginx的官方文档：http://nginx.org/en/docs/
 	--prefix=/home/shecannotsee/desktop/temp/nginx_docs_test/nginx-1.24.0-build \
 	--with-http_ssl_module \
 	--without-http_rewrite_module
+	
+make
+make install
 ```
 
 注1：在使用`--with-http_ssl_module`时需要根据需求在启用或者关闭`--without-http_rewrite_module`，关于该编译命令的含义请参考nginx的构建文档
@@ -64,6 +67,9 @@ nginx的官方文档：http://nginx.org/en/docs/
 	--prefix=/home/root/nginx-1.24.0-build \
 	--without-http_upstream_zone_module \
 	--without-stream_upstream_zone_module
+	
+make
+make install
 ```
 
 注：编译后的产物与`--prefix`的路径严重挂钩，若有交叉编译的权限问题，可以考虑使用docker来处理
