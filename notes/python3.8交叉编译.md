@@ -1,0 +1,71 @@
+# Python-3.8.10交叉编译
+
+#### 在使用 ./configure之前
+
+问题解决参考：https://github.com/python/cpython/issues/100535
+
+进入Python-3.8.10目录下，创建文件config.site，若文件存在则在文件后添加行
+
+config.site
+
+```
+ac_cv_file__dev_ptmx=no
+ac_cv_file__dev_ptc=no
+```
+
+
+
+#### 编译过程
+
+**前提**：若要交叉编译python3.8.10，需保证环境上已经安装了python3.8，因为在交叉编译时需要使用环境的python3.8来构建一些必须的依赖库
+
+```bash
+# 基本选项与解释
+./configure \
+	# 生成库的安装路径
+	--prefix=/home/root/out/Python-3.8.10 \
+	# 运行的系统架构(在x86下构建arm的库,在arm下运行,所以这里填写arm架构)
+	--host=aarch64-poky-linux \
+	# 构建时的架构(在x86下构建arm的库,在x86下进行构建,所以这里填写x86)
+	--build=x86_64-pc-linux-gnu
+
+# 交叉编译环境引入
+...
+
+# 实际编译使用选项
+./configure \
+	--prefix=/home/root/out/Python-3.8.10 \
+	--host=aarch64-poky-linux \
+	--build=x86_64-pc-linux-gnu \
+	--with-config-site=./CONFIG_SITE \
+	--disable-ipv6 \
+	--enable-optimizations
+	
+make -j8
+make install
+```
+
+注：`--with-config-site=./CONFIG_SITE`用来指定设置文件，用来消除configure问题（如下），
+
+```
+configure: error: set ac_cv_file__dev_ptmx to yes/no in your CONFIG_SITE file when cross compiling
+```
+
+`--disable-ipv6`与`--enable-optimizations`均为`--with-config-site=./CONFIG_SITE`选项带来的连带问题的解决方案
+
+
+
+#### 使用pip3
+
+参考文档：https://pip.pypa.io/en/stable/installation/
+
+下载 pip.pyz 文件，假设 Python-3.8.10-build 是构建后目录
+
+```bash
+# 基本使用
+../Python-3.8.10-build/bin/python3.8 pip.pyz --help
+
+# 例如，使用pip3安装flask的依赖
+.../Python-3.8.10/bin/python3.8 pip.pyz install flask
+```
+
