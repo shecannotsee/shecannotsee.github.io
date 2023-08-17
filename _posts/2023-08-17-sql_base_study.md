@@ -1,3 +1,7 @@
+---
+layout: post
+categories: blog
+---
 ## 一、sql的种类
 
 ### 1.DDL（Data Definition Language）
