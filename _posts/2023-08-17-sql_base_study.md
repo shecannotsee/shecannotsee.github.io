@@ -85,12 +85,12 @@ CREATE TABLE <表名>
 
 ```sql
 CREATE TABLE Product
-(	product_id		CHAR(4)			NOT NULL,	# 商品编号
-	product_name	VARCHAR(100)	NOT NULL,	# 商品名称
- 	product_type	VARCHAR(32)		NOT NULL,	# 商品种类
- 	sale_price		INTEGER			,			# 销售单价
- 	purchase_price	INTEGER			,			# 进货单价
- 	regist_date		DATE			,			# 登记日期
+( product_id     CHAR(4)			NOT NULL,	# 商品编号
+  product_name   VARCHAR(100)	NOT NULL,	# 商品名称
+  product_type   VARCHAR(32)		NOT NULL,	# 商品种类
+  sale_price     INTEGER			,			# 销售单价
+  purchase_price INTEGER			,			# 进货单价
+  regist_date    DATE			,			# 登记日期
 PRIMARY KEY(product_id) );
 ```
 
@@ -176,8 +176,8 @@ VALUE (<值1>,<值2>,<值3>, ...... );
 
 ```sql
 INSERT INTO Product 
-(product_id,	product_name,	product_type, sale_price) VALUE
-('0001',		'T恤衫',		   '衣服',	   500);
+(product_id, product_name, product_type, sale_price) VALUE
+('0001',     'T恤衫',       '衣服',       500);
 ```
 
 
@@ -212,15 +212,15 @@ DELETE FROM Product WHERE sale_price >= 4000;
 
 ```sql
 # 基本语法
-UPDATE 	<表名> 
-SET		<列名1> = <表达式>,
-		<列名2> = <表达式>,
-		...... ;
+UPDATE <表名> 
+SET    <列名1> = <表达式>,
+       <列名2> = <表达式>,
+       ...... ;
 
 # 带条件的更新
-UPDATE 	<表名> 
-SET		<列名> = <表达式>
-WHERE 	<条件>;
+UPDATE <表名> 
+SET    <列名> = <表达式>
+WHERE  <条件>;
 ```
 
 举例如下：
@@ -228,12 +228,12 @@ WHERE 	<条件>;
 ```sql
 # 基本：将表 Product 的所有数据的 regist_date 字段修改为 2009-10-10
 UPDATE Product 
-SET regist_date = '2009-10-10';
+SET    regist_date = '2009-10-10';
 
 # 带条件的更新：将商品种类为厨房用具的记录的销售单价更新为原来的10倍
 UPDATE Product
-SET sale_price = sale_price * 10
-WHERE product_type = '厨房用具';
+SET    sale_price = sale_price * 10
+WHERE  product_type = '厨房用具';
 ```
 
 
@@ -245,11 +245,11 @@ WHERE product_type = '厨房用具';
 ```sql
 # 基本查询
 SELECT <列名1>, ...... 
-FROM <表名>;
+FROM   <表名>;
 # 条件查询
 SELECT <列名1>, ......
-FROM <表名>
-WHERE <条件表达式>;
+FROM   <表名>
+WHERE  <条件表达式>;
 
 ```
 
@@ -257,16 +257,15 @@ WHERE <条件表达式>;
 
 ```sql
 # 从Product表中输出三列
-SELECT	product_id, product_name, purchase_price
-FROM 	Product;
+SELECT product_id, product_name, purchase_price
+FROM   Product;
 # 输出Product表中全部的列
-SELECT	*
-FROM	Product;
+SELECT *
+FROM   Product;
 # 用来选取 product_type 列为 '衣服' 的记录的 SELECT 语句
-SELECT	product_name, product_type
-FROM 	Product
-WHERE 	product_type = '衣服';
-
+SELECT product_name, product_type
+FROM   Product
+WHERE  product_type = '衣服';
 ```
 
 
@@ -274,15 +273,15 @@ WHERE 	product_type = '衣服';
 **别名**举例如下：查询表 Product 中的三列数据并且使用别名
 
 ```sql
-SELECT	product_id		AS id,
-		product_name	AS name,
-		purchase_price	AS price
-FROM	Product;
+SELECT product_id     AS id,
+       product_name   AS name,
+       purchase_price AS price
+FROM   Product;
 # 若使用中文，则需要双引号
-SELECT	product_id		AS "序列",
-		product_name	AS "名称",
-		purchase_price	AS "价格"
-FROM	Product;
+SELECT product_id     AS "序列",
+       product_name	  AS "名称",
+       purchase_price AS "价格"
+FROM   Product;
 ```
 
 
@@ -291,8 +290,8 @@ FROM	Product;
 
 ```sql
 # 使用 DISTINCT 删除 product_type 列中重复的数据
-SELECT 	DISTINCT product_type
-FROM 	Product;
+SELECT DISTINCT product_type
+FROM   Product;
 ```
 
 注意：对于有 NULL 的数据也会被合并为一条 NULL 数据，并且 **DISTINCT 关键字只能用在第一个列名之前**
@@ -309,10 +308,10 @@ FROM 	Product;
 
 ```sql
 # 把各个商品单价的 2 倍（ sale_price 的 2 倍）以 "sale_price_x2" 列的形式读取出来。
-SELECT	product_name, 
-		sale_price,
-		sale_price * 2 AS "sale_price_x2"
-FROM Product;
+SELECT product_name, 
+       sale_price,
+       sale_price * 2 AS "sale_price_x2"
+FROM   Product;
 ```
 
 
@@ -325,13 +324,13 @@ FROM Product;
 
 ```sql
 # 选取出销售单价大于等于1000的记录
-SELECT	product_name, product_type, sale_price
-FROM	Product
-WHERE	sale_price >= 1000;
+SELECT product_name, product_type, sale_price
+FROM   Product
+WHERE  sale_price >= 1000;
 # 选出销售单价(sale_price)比进货单价(purchase_price)高出500元以上的记录
-SELECT	product_name, sale_price, purchase_price
-FROM	Product
-WHERE	sale_price - purchase_price >= 500;
+SELECT product_name, sale_price, purchase_price
+FROM   Product
+WHERE  sale_price - purchase_price >= 500;
 ```
 
 
@@ -342,13 +341,13 @@ WHERE	sale_price - purchase_price >= 500;
 
 ```sql
 # 选取 NULL 的记录
-SELECT	product_name, purchase_price
-FROM	Product
-WHERE	purchase_price IS NULL;
+SELECT product_name, purchase_price
+FROM   Product
+WHERE  purchase_price IS NULL;
 # 选取不为 NULL 的记录
-SELECT	product_name, purchase_price
-FROM	Product
-WHERE	purchase_price IS NOT NULL;
+SELECT product_name, purchase_price
+FROM   Product
+WHERE  purchase_price IS NOT NULL;
 ```
 
 
@@ -371,13 +370,13 @@ NOT true => false，NOT false => true
 
 ```sql
 # 选取出销售单价大于等于1000的记录
-SELECT		product_name, product_type, sale_price
-FROM		Product
-WHERE NOT 	sale_price >= 1000;
+SELECT    product_name, product_type, sale_price
+FROM      Product
+WHERE NOT sale_price >= 1000;
 # 等价于
-SELECT	product_name, product_type
-FROM	Product
-WHERE	sale_price < 1000;
+SELECT product_name, product_type
+FROM   Product
+WHERE  sale_price < 1000;
 ```
 
 
@@ -396,36 +395,36 @@ true OR true => true，true OR false => true， false OR false => false
 
 ```sql
 # 选取售价大于3000并且是厨房用具的记录
-SELECT	product_name, purchase_price
-FROM	Product
-WHERE	product_type = ' 厨房用具 '
-AND		sale_price >= 3000;
+SELECT product_name, purchase_price
+FROM   Product
+WHERE  product_type = ' 厨房用具 '
+AND    sale_price >= 3000;
 
 # 选取售价大于3000或者是厨房用具的记录
-SELECT	product_name, purchase_price
-FROM	Product
-WHERE	product_type = ' 厨房用具 '
-OR		sale_price >= 3000;
+SELECT product_name, purchase_price
+FROM   Product
+WHERE  product_type = ' 厨房用具 '
+OR     sale_price >= 3000;
 ```
 
 请注意，**AND 运算符优先于 OR 运算符**，但是为了sql的可读性，请多使用括号来处理复杂的逻辑关系，而不是记忆运算符的优先级，例如：
 
 ```sql
 # 选取 商品种类为办公用品并且登记日期是 2009-09-11 或者 2009-09-20 的记录
-SELECT	product_name, product_type, regist_date
-FROM	Product
-WHERE	product_type = ' 办公用品 '
-AND		regist_date = '2009-09-11'
-OR		regist_date = '2009-09-20';
+SELECT product_name, product_type, regist_date
+FROM   Product
+WHERE  product_type = ' 办公用品 '
+AND    regist_date = '2009-09-11'
+OR     regist_date = '2009-09-20';
 -- 由于AND的运算符优先于OR，所以上述条件会被解释成
 -- (product_type=' 办公用品 ' AND regist_date = '2009-09-11')OR
 -- (regist_date = '2009-09-20')
 # 使用括号的写法如下
-SELECT	product_name, product_type, regist_date
-FROM	Product
-WHERE	product_type = ' 办公用品 '
-AND		(	regist_date = '2009-09-11' OR 
-    		regist_date = '2009-09-20');
+SELECT product_name, product_type, regist_date
+FROM   Product
+WHERE  product_type = ' 办公用品 '
+AND    ( regist_date = '2009-09-11' OR 
+         regist_date = '2009-09-20');
 ```
 
 
@@ -460,9 +459,9 @@ SELECT COUNT(*) FROM Product;
 -- 这里传给COUNT的参数是*，COUNT的输出就是sql语句的结果值
 
 # 计算全部数据的行数
-SELECT 	COUNT(*),	-- 计算结果包含NULL行
-		COUNT(col_1)-- 计算结果不包含NULL行 
-FROM 	NullTbl;
+SELECT COUNT(*),	-- 计算结果包含NULL行
+       COUNT(col_1)-- 计算结果不包含NULL行 
+FROM   NullTbl;
 
 # 先计算数据行数再删除重复数据的结果
 SELECT DISTINCT COUNT(product_type)
@@ -523,21 +522,21 @@ AS
 # 创建视图
 CREATE VIEW ProductSum (product_type, cnt_product)
 AS
-SELECT		product_type, COUNT(*)
-FROM 		Product
-GROUP BY 	product_type;
+SELECT   product_type, COUNT(*)
+FROM     Product
+GROUP BY product_type;
 # 使用创建的视图，该视图可以看做一张临时表，对于表来说，可以使用 WHERE,GROUP BY,HAVING 等关键字
-SELECT	product_type, cnt_product
-FROM 	ProductSum;
+SELECT product_type, cnt_product
+FROM   ProductSum;
 # 以视图为基础创建视图
 CREATE VIEW	ProductSumJim (product_type, cnt_product)
 AS
-SELECT	product_type, cnt_product
-FROM	ProductSum
-WHERE	product_type = '办公用品';
+SELECT product_type, cnt_product
+FROM   ProductSum
+WHERE  product_type = '办公用品';
 # 使用多重视图
-SELECT	product_type, cnt_product
-FROM	ProductSumJim;
+SELECT product_type, cnt_product
+FROM   ProductSumJim;
 ```
 
 - 请注意，对于多数DBMS来说，**多重视图会降低sql的性能**
