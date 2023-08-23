@@ -298,6 +298,57 @@ FROM   Product;
 
 
 
+#### 对表进行分组
+
+`GROUP BY`语法如下：
+
+```sql
+# 一般语法
+SELECT   <列名1>, <列名2>, <列名3>, ......
+FROM     <表名>
+GROUP BY <列名1>, <列名2>, <列名3>, ...... ;
+# 使用 WHERE 子句和 GROUP BY 子句进行汇总处理
+SELECT <列名1>, <列名2>, <列名3>, ...... 
+FROM   <表名>
+WHERE
+GROUP BY <列名1>, <列名2>, <列名3>, ...... ;
+-- 像这样使用 WHERE 子句进行汇总处理时，会先根据 WHERE 子句指定的条件进行过滤，然后再进行汇总处理
+```
+
+举例如下：
+
+```sql
+# 按照商品种类统计数据行数
+SELECT   product_type, COUNT(*)
+FROM     Product
+GROUP BY product_type;
+-- 不使用 GROUP BY 子句时，是将表中的所有数据作为一组来对待的。而使用 GROUP BY 子句时，会将表中的数据分为多个组进行处理
+```
+
+请注意：
+1.聚合键中包含 NULL 时，在结果中会以""不确定"行（空行）的形式表现出来。
+2.在`GROUP BY`字句中不能使用`AS`别名（postgresql支持该用法）
+3.`GROUP BY`的结果是随机顺序的
+4.只有`SELECT`子句和`HAVING`子句（以及`ORDER BY`子句）中能够使用聚合函数。
+
+
+
+#### 为聚合结果指定条件
+
+`HAVING`语法如下：
+
+
+
+
+
+
+
+#### 对查询排序
+
+
+
+
+
 ## 四、sql中的类型与计算
 
 ### 1.算数运算符
@@ -443,6 +494,8 @@ unknown OR true => TRUE，unknown OR false => unknown，unknown OR unknown => un
 
 ## 五、函数使用
 
+### 1.聚合函数
+
 对于函数来说，**输入的是数据库表**，**输出的是值**；使用函数 `COUNT`，`SUM`，`AVG`，`MAX`，`MIN` 来处理以下事情
 
 COUNT： 计算表中的记录数（行数）
@@ -495,6 +548,74 @@ FROM Product;
 SELECT MAX(sale_price), MIN(purchase_price)
 FROM Product;
 ```
+
+
+
+### 2.字符串函数
+
+#### 拼接字符串
+
+使用`||`对字符串进行拼接，语法如下：
+
+```sql
+<字符串1> || <字符串2>
+```
+
+请注意：mysql以及sql server可能无法使用该函数
+
+#### 字符串长度
+
+使用`LENGTH`函数来查看字符串的长度，语法如下：
+
+```sql
+LENGTH(<字符串>)
+```
+
+请注意：sql server可能无法使用该函数
+
+#### 小写转换
+
+使用`LOWER`函数可以将参数中的字符串全都转换为小写，语法如下：
+
+```sql
+LOWER(<字符串>)
+```
+
+#### 大写转换
+
+`UPPER`函数只能针对英文字母使用，它会将参数中的字符串全都转换为大写，语法如下：
+
+```sql
+UPPER(<字符串>)
+```
+
+#### 字符串替换
+
+使用`REPLACE`函数可以将字符串的一部分替换为其他的字符串，语法如下：
+
+```sql
+REPLACE(<对象字符串>, <替换前的字符串>, <替换后的字符串> )
+```
+
+#### 字符串的截取
+
+使用`SUBSTRING`函数可以截取出字符串中的一部分字符串，语法如下：
+
+```sql
+SUBSTRING(<对象字符串> FROM <截取的起始位置> FOR <截取的字符数>)
+```
+
+请注意：该函数可能无法在postgresql以及mysql之外的数据库使用
+
+
+
+### 3.日期函数
+
+略，自己找去
+
+### 4.转换函数
+
+略，自己找去
 
 
 
@@ -561,6 +682,82 @@ DROP VIEW ProductSum;
 ```
 
 - 在 PostgreSQL 中，如果删除以视图为基础创建出来的多重视图，由于存在关联的视图，因此会发生错误
+
+
+
+## 八、子查询
+
+子查询就是将用来定义视图的 SELECT 语句直接用于 FROM 子句当中，并且子查询作为内层查询会首先执行。
+
+### 1.标量子查询
+
+标量子查询就是返回单一值的子查询，**必须而且只能返回 1 行 1 列的结果**。所以标量子查询的返回值可以用在 = 或者 <> 这样需要单一值的比较运算符之中。请注意，使用标量子查询时**绝对不能返回多行结果**。
+
+举例如下：
+
+```sql
+# 错误的语法，在 WHERE 子句中不能使用聚合函数
+SELECT product_id, product_name, sale_price
+FROM Product
+WHERE sale_price > AVG(sale_price); # 错误
+# 正确方式，使用标量子查询
+SELECT product_id, product_name, sale_price
+FROM Product
+WHERE sale_price > (SELECT AVG(sale_price)
+                    FROM Product);
+```
+
+
+
+### 2.关联子查询
+
+在细分的组内进行比较时，需要使用关联子查询。
+
+举例如下：
+
+```sql
+# 通过关联子查询按照商品种类对平均销售单价进行比较
+SELECT product_type, product_name, sale_price
+FROM Product AS P1
+WHERE sale_price > (SELECT AVG(sale_price)
+                    FROM Product AS P2
+                    WHERE P1.product_type = P2.product_type
+                    GROUP BY product_type);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
