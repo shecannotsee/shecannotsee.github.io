@@ -337,15 +337,67 @@ GROUP BY product_type;
 
 `HAVING`语法如下：
 
+```sql
+SELECT   <列名1>, <列名2>, <列名3>, ......
+FROM     <表名>
+GROUP BY <列名1>, <列名2>, <列名3>, ...... 
+HAVING   <分组结果对应的条件>;
+```
 
+举例如下：
 
+```sql
+# 从按照商品种类进行分组后的结果中，取出"包含的数据行数为2行"的组
+SELECT   product_type, COUNT(*)
+FROM     Product
+GROUP BY product_type
+HAVING   COUNT(*) = 2;
+```
 
+请注意：HAVING 子句要写在 GROUP BY 子句之后。
+
+便捷理解：WHERE 子句 = 指定行所对应的条件，HAVING 子句 = 指定组所对应的条件
 
 
 
 #### 对查询排序
 
+可以使用`ORDER BY`字句来明确指定排列顺序（升序，对于表来说，从上往下，越来越大），`ORDER BY`语法如下：
 
+```sql
+# 升序
+SELECT   <列名1>, <列名2>, <列名3>, ...... 
+FROM     <表名>
+ORDER BY <排序基准列1>, <排序基准列2>, ...... ASC;
+-- 做升序排序时ASC关键字可省略
+# 降序
+SELECT   <列名1>, <列名2>, <列名3>, ...... 
+FROM     <表名>
+ORDER BY <排序基准列1>, <排序基准列2>, ...... DESC;
+```
+
+举例如下：
+
+```sql
+# 按照销售单价由低到高（升序）进行排列
+SELECT   product_id, product_name, sale_price, purchase_price
+FROM     Product
+ORDER BY sale_price;
+# 按照销售单价由高到低（降序）进行排列
+SELECT   product_id, product_name, sale_price, purchase_price
+FROM     Product
+ORDER BY sale_price DESC;
+
+# 按照销售单价和商品编号的升序进行排序
+SELECT   product_id, product_name, sale_price, purchase_price
+FROM     Product
+ORDER BY sale_price, product_id;
+-- 价格相同时按照商品编号的升序排列
+```
+
+请注意：
+1.排序键中包含`NULL`时，会在开头或末尾进行汇总。
+2.`ORDER BY`子句中可以使用列的别名，因为SELECT子句的执行顺序在`GROUP BY`子句之后，`ORDER BY`子句之前
 
 
 
@@ -490,6 +542,47 @@ unknown OR true => TRUE，unknown OR false => unknown，unknown OR unknown => un
 
 
 
+### 5.分支处理
+
+`CASE`表达式语法如下：
+
+```sql
+CASE WHEN <求值表达式> THEN <表达式>
+     WHEN <求值表达式> THEN <表达式>
+     ......
+     ELSE <表达式>
+END
+```
+
+举例如下：
+
+```sql
+# 通过 CASE 表达式将 ABC 的字符串加入到商品种类当中
+SELECT product_name,
+    CASE WHEN product_type = ' 衣服 '
+             THEN 'A ： ' | | product_type
+         WHEN product_type = ' 办公用品 '
+             THEN 'B ： ' | | product_type
+         WHEN product_type = ' 厨房用具 '
+             THEN 'C ： ' | | product_type
+         ELSE NULL
+         END AS abc_product_type
+FROM Product;
+-- 执行结果如下
+-- product_name   | abc_product_type
+-- ---------------+------------------
+-- T恤衫           | A ： 衣服
+-- 打孔器          | B ： 办公用品
+-- 运动T恤         | A ：衣服
+-- 菜刀            | C ：厨房用具
+-- 高压锅          | C ：厨房用具
+-- 叉子            | C ：厨房用具
+-- 擦菜板          | C ：厨房用具
+-- 圆珠笔          | B ：办公用品
+```
+
+
+
 
 
 ## 五、函数使用
@@ -621,6 +714,101 @@ SUBSTRING(<对象字符串> FROM <截取的起始位置> FOR <截取的字符数
 
 ## 六、对查询结果的进一步操作
 
+#### LIKE
+
+当需要进行字符串的部分一致查询时需要使用`LIKE`，语法如下：
+
+```sql
+SELECT <列名1>, <列名2>, ......
+FROM   <表名>
+WHERE  <列名x> LIKE <模式匹配规则> ;
+```
+
+举例如下：
+
+```sql
+# 查询以ddd开头的所有字符串，例如dddabc
+SELECT *
+FROM   SampleLike
+WHERE  strcol LIKE 'ddd%';
+-- 其中的 % 是代表 "0字符以上的任意字符串" 的特殊符号
+# 查询包含ddd的字符串，例如abcddd，dddabc，abdddc
+SELECT *
+FROM   SampleLike
+WHERE  strcol LIKE '%ddd%';
+# 查询以ddd结尾的字符串，例如abcddd
+SELECT *
+FROM   SampleLike
+WHERE  strcol LIKE '%ddd';
+# 使用 LIKE 和_（下划线）进行后方一致查询
+SELECT *
+FROM   SampleLike
+WHERE  strcol LIKE 'abc_ _';
+```
+
+
+
+#### BETWEEN
+
+使用`BETWEEN`可以进行范围查询，语法如下：
+
+```sql
+SELECT <列名1>, <列名2>, ......
+FROM   <表名>
+WHERE  <列名x> BETWEEN <范围下限> AND <范围上限> ;
+```
+
+举例如下：
+
+```sql
+# 选取销售单价为[100,1000]的商品(包含100和10000)
+SELECT product_name, sale_price
+FROM   Product
+WHERE  sale_price BETWEEN 100 AND 1000;
+```
+
+
+
+#### IN
+
+举例如下：
+
+```sql
+# 通过 IN 来指定多个进货单价进行查询
+SELECT product_name, purchase_price
+FROM   Product
+WHERE  purchase_price IN (320, 500, 5000);
+-- 选取进货价格为320，500，5000的商品信息
+
+SELECT product_name, purchase_price
+FROM   Product
+WHERE  purchase_price NOT IN (320, 500, 5000);
+-- 选取进货价格不为320，500，5000的商品信息
+```
+
+
+
+#### EXISTS
+
+`EXISTS` 只关心记录是否存在，举例如下：
+
+```sql
+# 用 EXIST 选取出"000C店在售商品的销售单价"
+SELECT product_name, sale_price
+FROM   Product AS P
+WHERE EXISTS (SELECT *
+              FROM   ShopProduct AS SP
+              WHERE  SP.shop_id = '000C'
+              AND    SP.product_id = P.product_id);
+# 使用 NOT EXIST 读取出"000C店在售之外的商品的销售单价"
+SELECT product_name, sale_price
+FROM   Product AS P
+WHERE NOT EXISTS (SELECT *
+                  FROM   ShopProduct AS SP
+                  WHERE  SP.shop_id = '000C'
+                  AND    SP.product_id = P.product_id);
+```
+
 
 
 
@@ -724,6 +912,97 @@ WHERE sale_price > (SELECT AVG(sale_price)
                     WHERE P1.product_type = P2.product_type
                     GROUP BY product_type);
 ```
+
+
+
+## 九、表的集合操作
+
+集合操作主要是以**行方向**为单位进行操作，其操作主要导致记录行数的增加和减少。
+
+### 1.UNION（并集）
+
+
+
+### 2.INTERSECT（交集）
+
+
+
+### 3.EXCEPT（差集）
+
+
+
+
+
+## 十、表的联结
+
+联结操作主要是以列方向为单位进行操作，其操作主要导致列的增加和减少。
+
+请注意：
+
+1.进行联结时需要在FROM子句中使用多张表。
+
+2.进行内联结时必须使用ON子句，并且要书写在FROM和WHERE之间。
+
+3.使用联结时SELECT子句中的列需要按照"<表的别名>.<列名>"的格式进行书写。
+
+### 1.INNER JOIN（内联结）
+
+对于内联结来说，如果记录在多表内不是都存在的，就不会读取出来，也就是说内联结**只返回共同匹配的行**。
+
+举例如下：
+
+```sql
+SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price
+FROM   ShopProduct AS SP INNER JOIN 
+       Product     AS P
+ON     SP.product_id = P.product_id;
+```
+
+
+
+### 2.OUTER JOIN（外联结）
+
+对于外联结来说，**只要数据存在于某一张表当中，就能够读取出来**。
+
+举例如下：
+
+```sql
+SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name,P.sale_price
+FROM   ShopProduct AS SP RIGHT OUTER JOIN 
+       Product     AS P 
+ON     SP.product_id = P.product_id;
+```
+
+对于外联结来说，可以使用关键字`LEFT`和`RIGHT`来指定主表。
+
+```sql
+# 使用了 RIGHT，因此，右侧的表，也就是 Product 表是主表
+SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price
+FROM   ShopProduct AS SP RIGHT OUTER JOIN 
+       Product     AS P
+ON     SP.product_id = P.product_id;
+
+# 使用了 LEFT，因此，左侧的表，也就是 Product 表是主表
+SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price
+FROM   Product     AS P LEFT OUTER JOIN 
+       ShopProduct AS SP 
+ON     SP.product_id = P.product_id;
+```
+
+多表联结举例如下：
+
+```sql
+# 3张表进行联结
+SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price, IP.inventory_quantity
+FROM       ShopProduct AS SP 
+INNER JOIN Product     AS P
+ON         SP.product_id = P.product_id
+           INNER JOIN InventoryProduct AS IP
+           ON SP.product_id = IP.product_id
+WHERE IP.inventory_id = 'P001';
+```
+
+
 
 
 
