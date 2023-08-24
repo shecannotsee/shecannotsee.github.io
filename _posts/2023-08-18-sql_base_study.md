@@ -917,25 +917,76 @@ WHERE sale_price > (SELECT AVG(sale_price)
 
 ## 九、表的集合操作
 
-集合操作主要是以**行方向**为单位进行操作，其操作主要导致记录行数的增加和减少。
+集合操作主要是以**行方向**为单位进行操作，其操作主要导致记录**行数的增加和减少**。
+
+请注意：
+1.作为运算对象的记录的列数必须相同
+2.作为运算对象的记录中列的类型必须一致
+3.可以使用任何`SELECT`语句，但`ORDER BY`子句只能在最后使用一次
+4.集合运算符会除去重复的记录
 
 ### 1.UNION（并集）
+
+若想在使用`UNION`时候保留重复行，则需要使用UNION ALL来进行操作
+
+举例如下：
+
+```sql
+# 使用UNION对表进行加法运算
+SELECT product_id, product_name
+FROM   Product
+UNION
+SELECT product_id, product_name
+FROM   Product2;
+# 保留重复行
+SELECT product_id, product_name
+FROM   Product
+UNION ALL
+SELECT product_id, product_name
+FROM   Product2;
+```
 
 
 
 ### 2.INTERSECT（交集）
 
+`INTERSECT`应该用于两张表，选取出它们当中的公共记录。同样可以使用`INTERSECT ALL`来保留重复行。
+
+举例如下：
+
+```sql
+# 使用INTERSECT选取出表中公共部分
+SELECT product_id, product_name
+FROM   Product
+INTERSECT
+SELECT   product_id, product_name
+FROM     Product2
+ORDER BY product_id;
+```
+
 
 
 ### 3.EXCEPT（差集）
 
+`EXCEPT` 返回左侧表结果（但是需要在左侧表结果中，剔除右侧表也有的记录）
 
+举例如下：
+
+```sql
+# 使用EXCEPT对记录进行减法运算
+SELECT product_id, product_name
+FROM   Product
+EXCEPT
+SELECT   product_id, product_name
+FROM     Product2
+ORDER BY product_id;
+```
 
 
 
 ## 十、表的联结
 
-联结操作主要是以列方向为单位进行操作，其操作主要导致列的增加和减少。
+联结操作主要是以列方向为单位进行操作，其操作主要导致**列的增加和减少**。
 
 请注意：
 
@@ -1004,9 +1055,15 @@ WHERE IP.inventory_id = 'P001';
 
 
 
+### 3.CROSS JOIN（交叉联结）
 
+交叉联结的结果是**笛卡尔积**，对于笛卡尔积，举例如下：
 
-
+```
+例如，A={a,b}, B={0,1,2}，则
+A×B={(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}
+B×A={(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)}
+```
 
 
 
