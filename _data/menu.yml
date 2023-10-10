@@ -36,7 +36,7 @@ entries:
 
   - title: About this blog
     entries:
-      - title: 本blog项目的github地址:<a href='https://github.com/shecannotsee/shecannotsee.github.io'>shecannotsee.github.io</a>
-      - title: 如何对blog进行自定义修改?
+      - title: Github address for this blog project:<a href='https://github.com/shecannotsee/shecannotsee.github.io'>shecannotsee.github.io</a>
+      - title: How to customize and modify a blog?
         url: how_to_modify_this_project # link to ./how_to_modify_this_project.md file
 
