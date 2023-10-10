@@ -2,41 +2,41 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: 主要内容
+  - title: Main Content
     entries:
-      - title: github地址:<a href='https://github.com/shecannotsee'>shecannotsee</a>
-      - title: 联系邮箱:shecannotsee@163.com
-      - title: 关于我
-        url: about_me # 该标题绑定到./about_me.md 文件
+      - title: Github address地址:<a href='https://github.com/shecannotsee'>shecannotsee</a>
+      - title: Contact Email:shecannotsee@163.com
+      - title: About Me
+        url: about_me # link to ./about_me.md file
 
-  - title: 最近文章
+  - title: recently
     post_list:
       limit: 5
       show_more: true
-      show_more_text: 查看所有文章
-      show_more_url: archive.html # 实际上会步入./archive.md 文件
+      show_more_text: View all blog
+      show_more_url: archive.html # Actually, it will enter ./archive.md file
 
-  - title: 按照分类查看
+  - title: View by category
     entries:
-      - title: 博客
+      - title: blogs
         post_list:
           limit: 5
           category: blog
           show_more: true
-          show_more_text: 查看其他[博客]
-          show_more_url: archive.html # # 实际上会步入./archive.md 文件
-      - title: 库的编译与使用
+          show_more_text: View other [blogs]
+          show_more_url: archive.html # Actually, it will enter ./archive.md file
+      - title: Compilation and Use of Libraries
         post_list:
           limit: 5
           category: lib
           show_more: true
-          show_more_text: 查看其他[库的编译与使用]
-          show_more_url: lib.html # 实际上会步入./about_me.md 文件
+          show_more_text: View Other[Compilation and Use of Libraries]
+          show_more_url: lib.html # Actually, it will enter ./about_me.md file
         
 
-  - title: 关于本blog
+  - title: About this blog
     entries:
       - title: 本blog项目的github地址:<a href='https://github.com/shecannotsee/shecannotsee.github.io'>shecannotsee.github.io</a>
       - title: 如何对blog进行自定义修改?
-        url: how_to_modify_this_project # 该标题绑定到./how_to_modify_this_project.md 文件
+        url: how_to_modify_this_project # link to ./how_to_modify_this_project.md file
 
