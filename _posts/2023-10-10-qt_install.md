@@ -51,12 +51,14 @@ from(https://forum.qt.io/topic/98501/static-compile-error-qt5-12-0-bootstrap-pri
 make&&g++
 
 ```bash
-$ apt install make
-$ apt install g++
+$ sudo apt install make
+$ sudo apt install g++
 # ERROR: Python is required to build QtQml.
-$ apt install python3
+$ sudo apt install python3
 # ERROR: The OpenGL functionality tests failed!
-$ apt install libgl1-mesa-dev
+$ sudo apt install libgl1-mesa-dev
+# Pre processing of runtime errors. Ensure that xcb lib is yes after configure check
+$ sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
 ```
 
 
