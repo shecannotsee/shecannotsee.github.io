@@ -4,7 +4,7 @@
 entries:
   - title: Main Content
     entries:
-      - title: Github address地址:<a href='https://github.com/shecannotsee'>shecannotsee</a>
+      - title: Github address:<a href='https://github.com/shecannotsee'>shecannotsee</a>
       - title: Contact Email:shecannotsee@163.com
       - title: About Me
         url: about_me # link to ./about_me.md file

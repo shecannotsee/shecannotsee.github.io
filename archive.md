@@ -1,4 +1,4 @@
 ---
 layout: archive
-title: 所有博客
+title: all blog
 ---
