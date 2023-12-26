@@ -141,3 +141,61 @@ TEST(t4_system_interface_mock, linux_system_interface) {
 ```
 
 至此，我们完成了系统函数的 mock 。
+
+
+
+## 3.一些辅助工具
+
+由于通过系统接口，来生成函数指针，实例化，然后添加一些 mock 的参数和分支选项，到最后 mock 系统函数。这一系列的动作，可以认为都是类似的动作，除了函数的信息不同之外（返回值，函数名，参数），没什么不同。
+
+至此，我编写了[这份代码](https://github.com/shecannotsee/some_script/blob/main/src/mock_system_function_generate/generated.py)，它可以帮你生成相应的重复代码，它可以根据输入的 c 函数的不同，自动生成与之匹配的代码。
+
+缺点就是你需要自己去填写一些 mock 的分支的选项，比如添加分支，然后处理相应的返回值，最后在单元测试中设置指定的分支然后获取想要的返回值。
+
+使用方法如下
+
+```bash
+$ python3 generated.py 
+input function [example int func(int a)]: use enter to end the input
+FILE *fopen (const char *__restrict __filename,
+		    const char *__restrict __modes)
+
+function name: fopen
+function return: FILE*
+function param: const char *__restrict __filename, const char *__restrict __modes
+function name list: __filename, __modes
+Parameters:
+  Type: const char *__restrict, Name: __filename
+  Type: const char *__restrict, Name: __modes
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* global mock set */
+static bool mock_fopen = false;
+constexpr int mock_fopen_errno = 1;
+enum class fopen_case_des : int {
+    ret_1,
+};
+static fopen_case_des fopen_case = fopen_case_des::ret_1;
+/* fopen mock set */
+typedef FILE* (*fopen_func_t)(const char *__restrict __filename, const char *__restrict __modes);
+/* The real function address function */
+fopen_func_t fopen_func = reinterpret_cast<fopen_func_t>(dlsym(RTLD_NEXT,"fopen"));
+/* fopen mock */
+extern "C" FILE* fopen(const char *__restrict __filename, const char *__restrict __modes) {
+  if (mock_fopen) {
+    if (fopen_case == fopen_case_des::ret_1) {
+      return FILE*{};
+    } else if ( 1 ) {
+      return FILE*{};
+    } else {
+      return FILE*{};
+    }
+  } else {
+    return fopen_func(__filename, __modes);
+  }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$
+```
+
+现在你可以把//环绕的代码放到你的单元测试中去了，然后做一些 mock 操作
