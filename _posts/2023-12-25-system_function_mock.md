@@ -85,6 +85,29 @@ extern "C" FILE* fopen(const char *__restrict __filename,
 }
 ```
 
+请注意，对于可变参数需要用以下方法来处理
+
+```c
+#include <cstdarg>  // va_list
+extern "C" int open(const char *__path, int __oflag, ...) {
+    if (mock_open) {
+        if (open_case == open_case_des::retBigerThanZero) {
+            return 1;
+        } else if (open_case == open_case_des::retZero) {
+            return 0;
+        } else {
+            return 0;
+        }
+    } else {
+        va_list args;  // 使用 va_list 处理可变参数
+        va_start(args, __oflag);
+        int result = open_func(__path, __oflag, args);
+        va_end(args);
+        return result;
+    }
+}
+```
+
 
 
 ### (3)在单元测试中使用
