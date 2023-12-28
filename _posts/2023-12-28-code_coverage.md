@@ -103,7 +103,7 @@ lcov --remove ./coverage/coverage.info '/usr/*' '*/googletest/*' \
 
 #### 交叉编译平台问题
 
-对于交叉编译问题，例如在 x86 平台上交叉编译 arm 的程序，在 x86 上编译结束，并且在 arm 上运行结束。相应的文件已经生成，在 x86 下使用 lcov 的时候，需要通过`--gcov-tool`指定交叉编译链中携带的 gcov 工具，否则无法正确生成相应的 .info 文件（猜测可能是不同平台下生成的文件格式不同）。
+**问题一**：对于交叉编译的平台问题，例如在 x86 平台上交叉编译 arm 的程序，在 x86 上编译结束，并且在 arm 上运行结束。相应的文件已经生成，在 x86 下使用 lcov 的时候，需要通过`--gcov-tool`指定交叉编译链中携带的 gcov 工具，否则无法正确生成相应的 .info 文件（猜测可能是不同平台下生成的文件格式不同）。
 
 ```bash
 lcov --directory . \
@@ -111,6 +111,12 @@ lcov --directory . \
      --output-file ./coverage/coverage.info \
      --gcov-tool /cross_compilation_toolchain/arm-oe-linux-gcov
 ```
+
+
+
+**问题二**：在进行交叉编译时，可能需要将 x86 平台下的编译目录与 arm 上的运行目录进行特殊处理。
+
+因为在编译时，其实已经指定了 .gcno 的产生路径 A_x86 ，并且 .gcda 的路径也会在 A_x86 下。这样就会导致在交叉编译后，放在 arm 上运行的时候，此时在 arm 的环境中， .gcda文件会想要在路径 A_x86 下去生成。可能就会因为目录权限问题导致 .gcda 文件无法生成。并且最后需要把 .gcno 和 .gcda 文件放在一起（可以详见`1.`和`2.`中的示例文件目录）， lcov 才能正确生成 .info 文件。
 
 
 
