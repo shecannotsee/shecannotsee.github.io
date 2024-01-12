@@ -79,7 +79,8 @@ build/CMakeFiles/she_base64_test.dir/src/she_base64.cpp.gcda
 ```bash
 lcov --directory . \
      --capture \
-     --output-file ./coverage/coverage.info
+     --output-file ./coverage/coverage.info \
+     --rc lcov_branch_coverage=1
 ```
 
 `--directory`用于在指定目录下搜集 .gcno 以及 .gcda 文件，该命令会递归遍历指定目录下的所有文件
@@ -87,6 +88,8 @@ lcov --directory . \
 `--capture`用于执行代码覆盖率测试，并将测试结果保存到 .info 文件中
 
 `--output-file`用于指定 .info 文件的目录
+
+`--rc lcov_branch_coverage=1` 启用分支覆盖率
 
 
 
@@ -127,7 +130,54 @@ lcov --directory . \
 通过以下命令对 .info 文件进行处理，在相应目录下产生 html 文件
 
 ```bash
-genhtml ./coverage/coverage.info -o ./coverage/coverage_report
+genhtml ./coverage/coverage.info \
+        -o ./coverage/coverage_report \
+        --branch-coverage
 ```
 
+ps: `--branch-coverage`产生分支覆盖率，若lcov未启用分支覆盖率，genhtml 将无法生成对应的分支覆盖率
+
 现在可以在`./coverage/coverage_report`目录下找到 index.html 文件了，打开就可以看到代码覆盖率的相关信息了。
+
+
+
+### 5.关于分支覆盖率
+
+对于函数
+
+```c
+// 该函数用来计算人体健康的分数
+// 身高高于170加十分
+// 体重大于50加十分
+int fun(int height, int weight) {
+    int ret = 0;
+    if (height > 170) {
+        ret += 10;
+    }
+    if (weight > 50) {
+        ret += 10;
+    }
+    return ret;
+}
+```
+
+若有测试用例
+
+```c
+void test() {
+    fun(190,80);
+}
+```
+
+运行后分支覆盖率为 50% 
+
+若添加测试用例
+
+```c
+void test() {
+    fun(190,80);
+    fun(150,30);
+}
+```
+
+运行后分支覆盖率为 100%
