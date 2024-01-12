@@ -98,9 +98,13 @@ lcov --directory . \
 在指定 .info 文件中忽略相关代码
 
 ```bash
-lcov --remove ./coverage/coverage.info '/usr/*' '*/googletest/*' \
+lcov --remove ./coverage/coverage.info \
+     '/usr/*' \
+     '*/googletest/*' \
      --output-file ./coverage/coverage.info
 ```
+
+ps:若没有排除成功可能是因为路径问题， 可以使用类似 `*/third_party/*`的方法来排除
 
 
 
