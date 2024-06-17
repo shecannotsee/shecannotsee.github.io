@@ -79,15 +79,19 @@ YUV格式有两大类：planar和packed。
 
 #### RGB->YUV
 
+```
 Y = 0.299R + 0.587G + 0.114B
 Cb = 0.564(B - Y)
 Cr = 0.713(R - Y)
+```
 
 #### YUV->RGB
 
+```
 R = Y + 1.402Cr
 B = Y + 1.772Cb
 G = Y - 0.344Cb - 0.714Cr
+```
 
 
 
