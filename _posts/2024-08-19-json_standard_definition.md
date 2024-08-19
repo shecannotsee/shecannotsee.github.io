@@ -65,13 +65,13 @@ value-separator = ws %x2C ws  ; , comma, 逗号
    object.json, 仅object:
 
    ```json
-   { "name": "value" }
+   {"name":"value"}
    ```
 
    array.json, 仅array:
 
    ```json
-   [ "value1", "value2", "value3" ]
+   ["value1","value2","value3"]
    ```
 
    string.json, 仅string:
