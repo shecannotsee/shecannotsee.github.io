@@ -5,64 +5,12 @@ categories: blog
 
 RFC8259：https://datatracker.ietf.org/doc/html/rfc8259
 
-
-
 # json: 简介
 
 1. json(javascript object notation)可以表示四种primitive types: strings, numbers, booleans and null, 和两种structured types:objects and arrays(这两个概念来自 JavaScript 的约定)。
-
 2. strings是由零个或多个unicode字符组成的序列。
-
 3. object是**零个或多个**name/value的**无序集合**; 其中name是strings; value是strings, numbers、booleans、null、objects或arrays。
-
 4. array是**零个或多个**value的**有序序列**。
-
-5. 虽然RFC8259并没有明确说明, 但是根据以下描述意味着json文本(也就是一个json文件的内容)只能是一个单一的json值, 这个json值可以是一个objec, array, strings, numbers, booleans and null, 但只能有一个顶级结构。
-
-   > RFC 8259 的第2节明确指出: 
-   >
-   > A JSON text is a serialized value. Note that certain previous specifications of JSON constrained a JSON text to be an object or an array. Implementations that generate only objects or arrays where a JSON value is expected will be interoperable in the sense that all implementations will accept these as conforming JSON texts. However, this specification allows any JSON value.
-   >
-   > 翻译如下:
-   >
-   > JSON 文本是一个序列化的值。请注意，以前的某些 JSON 规范将 JSON 文本限制为对象或数组。如果在需要 JSON 值的地方仅生成对象或数组的实现是可互操作的，因为所有实现都会接受这些作为符合 JSON 规范的文本。然而，这个规范允许任何 JSON 值。
-
-6. 根据简介5, 对于json文件来说, 单个的value也是合法的, 所以以下的单个json文件都是合法的:
-   object.json, 仅object:
-
-   ```json
-   { "name": "value" }
-   ```
-
-   array.json, 仅array:
-
-   ```json
-   [ "value1", "value2", "value3" ]
-   ```
-
-   string.json, 仅string:
-
-   ```json
-   "Just a string"
-   ```
-
-   number.json, 仅number:
-
-   ```json
-   123456
-   ```
-
-   boolean.json, 仅boolean:
-
-   ```json
-   true
-   ```
-
-   null.json, 仅null
-
-   ```json
-   null
-   ```
 
 
 
