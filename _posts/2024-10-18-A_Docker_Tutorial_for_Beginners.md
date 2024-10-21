@@ -358,7 +358,7 @@ RUN apt-get update && apt-get install -y \
     valgrind \
     lcov \
     doxygen \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean
 
 # Set the working directory
 WORKDIR /app
