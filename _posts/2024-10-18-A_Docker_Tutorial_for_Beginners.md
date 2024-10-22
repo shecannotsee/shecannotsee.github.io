@@ -388,6 +388,6 @@ $ sudo docker build -t cpp_dev_env .
 (3) Run the container using the following command:
 
 ```bash
-docker run -it --name my_cpp_container cpp_dev_env
+$ sudo docker run -it --name my_cpp_container cpp_dev_env
 ```
 
