@@ -36,4 +36,4 @@ categories: blog
 
 其他target组织
 
-参考 CMakeLists.txt 的构建结构。
+一半来说，除了 src（也就是lib）以及 src 对应的 test，项目中的其他 target 都是基于 src 构建的 applicaion。
