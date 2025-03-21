@@ -77,3 +77,10 @@ $ sudo apt purge package_name
 $ find /home -type f -name main.cpp
 ```
 
+#### 强制退出某程序
+
+```bash
+# 输入 xkill 然后移动光标到程序
+$ xkill
+```
+
