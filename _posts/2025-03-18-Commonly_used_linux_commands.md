@@ -68,7 +68,12 @@ $ sudo apt install package_name
 $ sudo apt remove package_name
 # 完全卸载，包括配置文件
 $ sudo apt purge package_name
+```
 
+#### find
 
+```bash
+# 在 /home 目录下查找名为 main.cpp 文件
+$ find /home -type f -name main.cpp
 ```
 
