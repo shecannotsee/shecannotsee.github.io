@@ -30,6 +30,15 @@ $ tar -xvzf sophon-sail_3.8.0.tar.gz
 $ tar -xvzf sophon-sail_3.8.0.tar.gz -C /opt/sophon
 ```
 
+对于以
+
+```bash
+# x：解压文件; v：显示解压过程（可选）; J：使用 xz 解压; f：指定文件名
+$ tar -xJvf blender-4.4.0-linux-x64.tar.xz
+```
+
+
+
 #### 内存
 
 ```bash
