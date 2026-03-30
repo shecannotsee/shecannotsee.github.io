@@ -3,147 +3,89 @@ layout: default
 ---
 {% assign profile = site.data.site_profile %}
 
-<section class="hero">
-  <div class="hero__copy">
-    <p class="eyebrow">{{ profile.hero.eyebrow }}</p>
-    <h1>{{ profile.hero.title }}</h1>
-    <p class="hero__summary">{{ profile.hero.summary }}</p>
-    <p class="hero__description">{{ profile.hero.description }}</p>
-
-    <div class="hero__actions">
-      {% for item in profile.hero.links %}
-        {% if item.url contains '://' or item.url contains 'mailto:' %}
-          {% assign hero_url = item.url %}
-        {% else %}
-          {% assign hero_url = item.url | relative_url %}
-        {% endif %}
-        <a class="button-link" href="{{ hero_url }}">{{ item.title }}</a>
-      {% endfor %}
-    </div>
+<section class="home-section" id="about">
+  <div class="section-label">
+    <h2>About</h2>
   </div>
 
-  <aside class="hero__panel">
-    <p class="eyebrow">Now</p>
-    <h2>{{ profile.status.title }}</h2>
-    <ul class="bullet-list">
-      {% for item in profile.status["items"] %}
+  <div class="prose prose-home">
+    <p>
+      <img
+        src="{{ profile.hero.image | relative_url }}"
+        alt="{{ profile.hero.image_alt }}"
+        class="profile-image"
+        width="96"
+        height="96"
+      />
+      {{ profile.hero.intro }}
+    </p>
+    <ul>
+      {% for item in profile.hero.facts %}
         <li>{{ item }}</li>
       {% endfor %}
     </ul>
-  </aside>
-</section>
-
-<section class="section-grid">
-  <article class="card">
-    <div class="section-heading">
-      <p class="eyebrow">Profile</p>
-      <h2>About</h2>
-    </div>
-    <div class="feature-list">
-      {% for item in profile.highlights %}
-        <section class="feature-list__item">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.text }}</p>
-        </section>
-      {% endfor %}
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="section-heading">
-      <p class="eyebrow">Projects</p>
-      <h2>{{ profile.projects.title }}</h2>
-    </div>
-    <div class="project-list">
-      {% for project in profile.projects["items"] %}
-        <section class="project-list__item">
-          <div class="project-list__header">
-            <h3>
-              {% if project.url %}
-                <a href="{{ project.url }}">{{ project.name }}</a>
-              {% else %}
-                {{ project.name }}
-              {% endif %}
-            </h3>
-            <span class="badge">{{ project.status }}</span>
-          </div>
-          <p>{{ project.description }}</p>
-        </section>
-      {% endfor %}
-    </div>
-  </article>
-</section>
-
-<section class="card">
-  <div class="section-heading section-heading--split">
-    <div>
-      <p class="eyebrow">Writing</p>
-      <h2>Latest Posts</h2>
-    </div>
-    <a class="section-link" href="{{ '/archive.html' | relative_url }}">View all</a>
   </div>
-  {%- include post_list.html limit=6 -%}
 </section>
 
-<section class="section-grid">
-  <article class="card">
-    <div class="section-heading section-heading--split">
-      <div>
-        <p class="eyebrow">Category</p>
-        <h2>Blog</h2>
-      </div>
-      <a class="section-link" href="{{ '/archive.html' | relative_url }}">All posts</a>
-    </div>
-    {%- include post_list.html category="blog" limit=4 compact=true show_more=true show_more_text="More blog posts" show_more_url="/archive.html" -%}
-  </article>
+<section class="home-section" id="projects">
+  <div class="section-label">
+    <h2>Projects</h2>
+  </div>
 
-  <article class="card">
-    <div class="section-heading section-heading--split">
-      <div>
-        <p class="eyebrow">Category</p>
-        <h2>Libraries</h2>
-      </div>
-      <a class="section-link" href="{{ '/lib.html' | relative_url }}">All library notes</a>
-    </div>
-    {%- include post_list.html category="lib" limit=4 compact=true show_more=true show_more_text="More library notes" show_more_url="/lib.html" -%}
-  </article>
+  <div class="prose prose-home">
+    <p>{{ profile.projects.intro }}</p>
+    {% for group in profile.projects.groups %}
+      {% if group.title %}
+        <p>{{ group.title }}</p>
+      {% endif %}
+      <ul class="plain-list">
+        {% for item in group.items %}
+          <li class="linked-row">
+            <span class="linked-row__marker">﹂</span>
+            {% if item.url %}
+              <a href="{{ item.url }}">{{ item.name }}</a>
+            {% else %}
+              <span class="linked-row__text">{{ item.name }}</span>
+            {% endif %}
+            <span class="linked-row__desc">{{ item.description }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    <p>如果你想交流项目、代码实现或者工程问题，可以直接给我发邮件。</p>
+  </div>
 </section>
 
-<section class="section-grid">
-  <article class="card">
-    <div class="section-heading">
-      <p class="eyebrow">Contact</p>
-      <h2>{{ profile.contacts.title }}</h2>
-    </div>
-    <ul class="contact-list">
+<section class="home-section" id="posts">
+  <div class="section-label">
+    <h2>Latest Posts</h2>
+  </div>
+
+  <div class="section-body">
+    {%- include post_list.html limit=6 show_more=true show_more_text="All posts" show_more_url="/archive.html" -%}
+  </div>
+</section>
+
+<section class="home-section" id="contact">
+  <div class="section-label">
+    <h2>Get in touch</h2>
+  </div>
+
+  <div class="section-body">
+    <ul class="entry-list">
       {% for item in profile.contacts["items"] %}
         {% if item.url contains '://' or item.url contains 'mailto:' %}
           {% assign contact_url = item.url %}
         {% else %}
           {% assign contact_url = item.url | relative_url %}
         {% endif %}
-        <li>
-          <span>{{ item.label }}</span>
-          <a href="{{ contact_url }}">{{ item.value }}</a>
+        <li class="entry-list__item">
+          <span class="entry-list__marker">﹂</span>
+          <a href="{{ contact_url }}">
+            {% if item.prefix %}<span class="entry-list__prefix">{{ item.prefix }}</span>{% endif %}{{ item.value }}
+          </a>
         </li>
       {% endfor %}
     </ul>
-  </article>
-
-  <article class="card card--accent">
-    <div class="section-heading">
-      <p class="eyebrow">Maintenance</p>
-      <h2>How this homepage works</h2>
-    </div>
-    <p>
-      首页的固定文案由 <code>_data/site_profile.yml</code> 驱动，文章列表自动读取
-      <code>_posts/</code> 中的内容。
-    </p>
-    <p>
-      如果需要新增导航、更新项目、修改联系方式，直接查看维护文档即可。
-    </p>
-    <a class="button-link button-link--primary" href="{{ '/how_to_modify_this_project.html' | relative_url }}">Open guide</a>
-  </article>
+  </div>
 </section>
-
-{{ content }}

@@ -1,78 +1,62 @@
 navigation:
   - title: /home
     url: /
-  - title: /archive
+  - title: /posts
     url: /archive.html
   - title: /about
     url: /about_me.html
-  - title: /libraries
-    url: /lib.html
-  - title: /guide
-    url: /how_to_modify_this_project.html
 
 hero:
-  eyebrow: Software engineer / C++ / systems
-  title: shecannotsee
-  summary: 记录我在 C++、Linux、构建系统、协议和工程化上的长期实践。
-  description: >
-    这里主要存放技术文章、项目笔记以及一些逐步打磨出来的基础库。页面结构参考
-    kulpinski.dev 的简单分区方式，但内容组织更偏向个人知识库与工程日志。
-  links:
-    - title: GitHub
-      url: https://github.com/shecannotsee
-    - title: Email
-      url: mailto:shecannotsee@163.com
-    - title: About Me
-      url: /about_me.html
-
-status:
-  title: Current Focus
-  items:
-    - 使用 C++ 构建可长期维护的基础库与服务端组件
-    - 持续整理 Linux、构建流程、网络与工具链笔记
-    - 把零散经验沉淀成可以回查和复用的文章
-
-highlights:
-  - title: Background
-    text: 数学、金融学与计算机背景，目前主要专注软件开发与工程实践。
-  - title: Writing
-    text: 文章主题集中在 C++、Linux、协议、性能、构建系统与项目结构。
-  - title: Approach
-    text: 优先记录能落地、能复用、能帮助自己长期维护项目的内容。
+  image: /logo.png
+  image_alt: shecannotsee
+  intro: >
+    我主要做 C++、Linux、构建系统和服务端工程相关的开发，也会把零散但有用的
+    实践经验整理成文章和项目笔记。
+  facts:
+    - 数学、金融学与计算机背景，目前专注软件开发与工程实践
+    - 长期记录 C++、协议、构建流程、项目结构与 Linux 使用经验
+    - 持续打磨一组以 she 开头命名的基础库与实验性项目
+    - 关注可维护性、清晰接口和可以长期复用的工程组织方式
 
 projects:
-  title: Selected Projects
-  items:
-    - name: sheBase64
-      status: stable experiment
-      description: 用来试验项目结构、构建方式和测试组织的基础项目，也承担 Base64 编解码实现。
-      url: https://github.com/shecannotsee/sheBase64
-    - name: sheLog
-      status: implemented
-      description: 基于生产者消费者模型的日志库，关注异步写入、接口清晰度与可维护性。
-      url: https://github.com/shecannotsee/sheLog
-    - name: sheIni
-      status: evolving
-      description: 在传统 ini 格式基础上扩展多级包含和数组等常见能力，兼顾兼容性与实用性。
-    - name: sheNet
-      status: in progress
-      description: 面向 Linux 服务端场景的网络库，偏重基础通信能力而非跨平台。
-    - name: sheThreadPool
-      status: utility
-      description: 基于 C++11 的线程池方案，经常作为其他项目的底层依赖进行复用。
+  intro: 我长期维护并持续实验下面这些项目和方向：
+  groups:
+    - title: Libraries & tools
+      items:
+        - name: sheBase64
+          description: Base64 编解码实现，也是我试验项目结构、构建方式和测试组织的重要项目。
+          url: https://github.com/shecannotsee/sheBase64
+        - name: sheLog
+          description: 采用生产者消费者模型的日志库，关注异步写入和接口清晰度。
+          url: https://github.com/shecannotsee/sheLog
+        - name: sheIni
+          description: 在传统 ini 基础上扩展多级包含与数组等常用能力。
+        - name: sheThreadPool
+          description: 基于 C++11 的线程池方案，经常作为其他项目的底层依赖。
+    - title: In progress
+      items:
+        - name: sheNet
+          description: 面向 Linux 服务端场景的网络库，偏重基础通信能力而非跨平台。
+        - name: sheRaft
+          description: 仍以笔记和设计为主，计划在网络基础完善后继续推进。
+        - name: data_structure_core
+          description: 希望系统重写一批常见和困难数据结构，保持实现与命名风格统一。
 
 contacts:
-  title: Get in touch
   items:
     - label: Email
-      value: shecannotsee@163.com
+      prefix: shecannotsee(at)
+      value: 163.com
       url: mailto:shecannotsee@163.com
     - label: GitHub
-      value: github.com/shecannotsee
+      prefix: github.com/
+      value: shecannotsee
       url: https://github.com/shecannotsee
     - label: Blog Repo
+      prefix: github.com/shecannotsee/
       value: shecannotsee.github.io
       url: https://github.com/shecannotsee/shecannotsee.github.io
     - label: Maintainer Guide
+      prefix: /
       value: how_to_modify_this_project
       url: /how_to_modify_this_project.html

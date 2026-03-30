@@ -5,12 +5,11 @@
     <nav class="site-nav" aria-label="Primary">
       {% for item in profile.navigation %}
         {% assign item_path = item.url | replace: '.html', '/' %}
-        <a
-          class="site-nav__link{% if page.url == item.url or page.url == item_path %} is-active{% endif %}"
-          href="{{ item.url | relative_url }}"
-        >
-          {{ item.title }}
-        </a>
+        {% if page.url == item.url or page.url == item_path %}
+          <span class="site-nav__link is-active">{{ item.title }}</span>
+        {% else %}
+          <a class="site-nav__link" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {% endif %}
       {% endfor %}
     </nav>
   </div>

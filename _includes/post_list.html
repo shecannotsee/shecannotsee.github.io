@@ -11,20 +11,19 @@
 {%-endif-%}
 
 {%- if posts and posts.size > 0 -%}
-  <ul class="post-list{% if include.compact %} post-list--compact{% endif %}">
+  <ul class="entry-list{% if include.compact %} entry-list--compact{% endif %}">
     {%- for post in posts limit: include.limit -%}
-      <li class="post-list__item">
-        <div class="post-list__meta">
+      <li class="entry-list__item">
+        <span class="entry-list__marker">﹂</span>
+        <a class="entry-list__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="entry-list__meta">
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: site.theme_config.date_format }}</time>
-          {%- for category in post.categories -%}
-            <span class="post-list__tag">{{ category }}</span>
-          {%- endfor -%}
-        </div>
-        <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </span>
       </li>
     {%- endfor -%}
     {%- if include.show_more and limit_exceeded -%}
-      <li class="post-list__more">
+      <li class="entry-list__item">
+        <span class="entry-list__marker">﹂</span>
         <a href="{{ include.show_more_url | relative_url }}">{{ include.show_more_text | default: "Show more..." }}</a>
       </li>
     {%- endif -%}

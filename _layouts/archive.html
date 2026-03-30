@@ -1,16 +1,15 @@
 ---
 layout: default
 ---
-<section class="page-header">
-  <p class="eyebrow">Archive</p>
-  <h1>{{ page.title }}</h1>
-  {% if page.which_category %}
-    <p class="page-header__description">当前列表只显示分类为 <code>{{ page.which_category }}</code> 的文章。</p>
-  {% else %}
-    <p class="page-header__description">这里汇总站点中的全部文章，按发布时间倒序展示。</p>
-  {% endif %}
-</section>
+<section class="page-shell">
+  <header class="page-header">
+    <h1>{{ page.title }}</h1>
+    {% if page.which_category %}
+      <p class="page-header__description">当前列表只显示分类为 <code>{{ page.which_category }}</code> 的文章。</p>
+    {% endif %}
+  </header>
 
-<section class="content-card">
-  {%- include post_list.html category=page.which_category -%}
+  <div class="section-body">
+    {%- include post_list.html category=page.which_category -%}
+  </div>
 </section>

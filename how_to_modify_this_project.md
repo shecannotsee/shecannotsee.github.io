@@ -52,11 +52,16 @@ title: how to modify this project
 这个文件控制：
 
 - 顶部导航：`navigation`
-- 首页首屏：`hero`
-- 当前关注点：`status`
-- 个人简介卡片：`highlights`
-- 项目列表：`projects`
-- 联系方式和维护入口：`contacts`
+- 首页 About 段落和头像：`hero`
+- 首页项目区：`projects`
+- 联系方式：`contacts`
+
+当前首页风格是按 `https://kulpinski.dev/` 的窄栏单列布局实现的，所以首页内容也是围绕下面四个模块组织的：
+
+- About
+- Projects
+- Latest Posts
+- Get in touch
 
 例如，你想增加一个导航项：
 
@@ -64,27 +69,57 @@ title: how to modify this project
 navigation:
   - title: /home
     url: /
-  - title: /archive
+  - title: /posts
     url: /archive.html
   - title: /new-page
     url: /new_page.html
+```
+
+例如，你想修改 About 区内容：
+
+```yaml
+hero:
+  image: /logo.png
+  image_alt: shecannotsee
+  intro: >
+    这里写首页第一段介绍。
+  facts:
+    - 这里写第一条简介
+    - 这里写第二条简介
 ```
 
 例如，你想新增一个项目：
 
 ```yaml
 projects:
-  title: Selected Projects
-  items:
-    - name: sheBase64
-      status: stable experiment
-      description: 用来试验项目结构、构建方式和测试组织的基础项目。
-      url: https://github.com/shecannotsee/sheBase64
-    - name: newProject
-      status: in progress
-      description: 这里写这个项目的简介。
-      url: https://github.com/shecannotsee/newProject
+  intro: 我长期维护并持续实验下面这些项目和方向：
+  groups:
+    - title: Libraries & tools
+      items:
+        - name: sheBase64
+          description: 用来试验项目结构、构建方式和测试组织的基础项目。
+          url: https://github.com/shecannotsee/sheBase64
+        - name: newProject
+          description: 这里写这个项目的简介。
+          url: https://github.com/shecannotsee/newProject
 ```
+
+联系方式的写法如下：
+
+```yaml
+contacts:
+  items:
+    - label: GitHub
+      prefix: github.com/
+      value: shecannotsee
+      url: https://github.com/shecannotsee
+```
+
+其中：
+
+- `prefix` 会显示成灰色前缀
+- `value` 会显示成主要文字
+- `url` 是点击后的地址
 
 ## 3. 修改“关于我”页面
 
@@ -134,9 +169,8 @@ title: 我的新文章
 说明：
 
 - `layout: post` 表示这是文章页
-- `categories: blog` 会让它进入首页的 Blog 区域
-- 如果你写的是库相关内容，可以用 `categories: lib`
 - 新文章会自动出现在首页的 `Latest Posts` 区域
+- `archive.html` 会显示全部文章
 
 如果一篇文章既想出现在总列表，也想打分类，可以这样写：
 
@@ -157,11 +191,11 @@ categories:
 这里已经集中定义了：
 
 - 颜色变量
-- 首页卡片布局
-- 导航样式
-- 文章页样式
-- 代码块样式
-- 手机端适配
+- 窄栏单列布局
+- 顶部导航和底部 footer
+- 首页 section 排版
+- 文章页和普通页面的 prose 样式
+- 列表项、代码块和手机端适配
 
 如果你只想改颜色，优先修改文件开头的 `:root` 变量。
 
@@ -171,11 +205,9 @@ categories:
 
 这个文件控制首页模块顺序，比如：
 
-- 首屏 Hero
 - About
 - Projects
 - Latest Posts
-- 分类文章区
 - 联系方式
 
 如果你要新增一个新的首页模块，通常做法是：

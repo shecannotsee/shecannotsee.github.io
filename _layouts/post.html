@@ -1,19 +1,15 @@
 ---
 layout: default
 ---
-<article class="post-shell">
+<article class="page-shell">
   <header class="page-header page-header--post">
-    <p class="eyebrow">Post</p>
     <h1>{{ page.title }}</h1>
     <p class="post-meta">
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: site.theme_config.date_format }}</time>
-      {%- for category in page.categories -%}
-        <span class="post-list__tag">{{ category }}</span>
-      {%- endfor -%}
     </p>
   </header>
 
-  <div class="content-card prose">
+  <div class="prose page-prose">
     {{ content }}
   </div>
 </article>

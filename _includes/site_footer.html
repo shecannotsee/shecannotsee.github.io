@@ -1,17 +1,9 @@
 {% assign profile = site.data.site_profile %}
 <footer class="site-footer">
-  <div class="site-footer__meta">
-    <p>{{ site.description }}</p>
-    <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}</p>
-  </div>
-  <div class="site-footer__links">
-    {% for item in profile.contacts["items"] %}
-      {% if item.url contains '://' or item.url contains 'mailto:' %}
-        {% assign footer_url = item.url %}
-      {% else %}
-        {% assign footer_url = item.url | relative_url %}
-      {% endif %}
-      <a href="{{ footer_url }}">{{ item.label }}</a>
-    {% endfor %}
-  </div>
+  <p>
+    &copy; {{ site.time | date: "%Y" }} &middot;
+    <a href="{{ '/archive.html' | relative_url }}">Posts</a>
+    &middot;
+    <a href="{{ '/how_to_modify_this_project.html' | relative_url }}">Guide</a>
+  </p>
 </footer>
