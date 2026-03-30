@@ -2,8 +2,14 @@
 <footer class="site-footer">
   <p>
     &copy; {{ site.time | date: "%Y" }} &middot;
-    <a href="{{ '/archive.html' | relative_url }}">Posts</a>
+    <a href="{{ '/archive.html' | relative_url }}">
+      <span class="lang-zh">{{ profile.ui.copy.footer_posts.zh }}</span>
+      <span class="lang-en">{{ profile.ui.copy.footer_posts.en }}</span>
+    </a>
     &middot;
-    <a href="{{ '/how_to_modify_this_project.html' | relative_url }}">Guide</a>
+    <a href="{{ '/how_to_modify_this_project.html' | relative_url }}">
+      <span class="lang-zh">{{ profile.ui.copy.footer_guide.zh }}</span>
+      <span class="lang-en">{{ profile.ui.copy.footer_guide.en }}</span>
+    </a>
   </p>
 </footer>

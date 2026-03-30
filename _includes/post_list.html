@@ -1,3 +1,4 @@
+{% assign profile = site.data.site_profile %}
 {%-if include.category-%}
   {%-assign posts = site.categories[include.category]-%}
 {%-else-%}
@@ -24,10 +25,20 @@
     {%- if include.show_more and limit_exceeded -%}
       <li class="entry-list__item">
         <span class="entry-list__marker">﹂</span>
-        <a href="{{ include.show_more_url | relative_url }}">{{ include.show_more_text | default: "Show more..." }}</a>
+        <a href="{{ include.show_more_url | relative_url }}">
+          {% if include.show_more_zh and include.show_more_en %}
+            <span class="lang-zh">{{ include.show_more_zh }}</span>
+            <span class="lang-en">{{ include.show_more_en }}</span>
+          {% else %}
+            {{ include.show_more_text | default: "Show more..." }}
+          {% endif %}
+        </a>
       </li>
     {%- endif -%}
   </ul>
 {%- else -%}
-  <p class="empty-state">还没有可展示的文章。</p>
+  <p class="empty-state">
+    <span class="lang-zh">{{ profile.ui.copy.empty_posts.zh }}</span>
+    <span class="lang-en">{{ profile.ui.copy.empty_posts.en }}</span>
+  </p>
 {%- endif -%}

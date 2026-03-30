@@ -2,15 +2,46 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="site-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <nav class="site-nav" aria-label="Primary">
-      {% for item in profile.navigation %}
-        {% assign item_path = item.url | replace: '.html', '/' %}
-        {% if page.url == item.url or page.url == item_path %}
-          <span class="site-nav__link is-active">{{ item.title }}</span>
-        {% else %}
-          <a class="site-nav__link" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        {% endif %}
-      {% endfor %}
-    </nav>
+    <div class="site-header__side">
+      <nav class="site-nav" aria-label="Primary">
+        {% for item in profile.ui.navigation %}
+          {% assign item_path = item.url | replace: '.html', '/' %}
+          {% if page.url == item.url or page.url == item_path %}
+            <span class="site-nav__link is-active">
+              <span class="lang-zh">{{ item.title.zh }}</span>
+              <span class="lang-en">{{ item.title.en }}</span>
+            </span>
+          {% else %}
+            <a class="site-nav__link" href="{{ item.url | relative_url }}">
+              <span class="lang-zh">{{ item.title.zh }}</span>
+              <span class="lang-en">{{ item.title.en }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </nav>
+
+      <div class="site-controls" aria-label="Preferences">
+        <div class="preference-group" role="group" aria-label="Theme">
+          <button class="preference-button" type="button" data-theme-value="light">
+            <span class="lang-zh">{{ profile.ui.controls.theme_light.zh }}</span>
+            <span class="lang-en">{{ profile.ui.controls.theme_light.en }}</span>
+          </button>
+          <button class="preference-button" type="button" data-theme-value="dark">
+            <span class="lang-zh">{{ profile.ui.controls.theme_dark.zh }}</span>
+            <span class="lang-en">{{ profile.ui.controls.theme_dark.en }}</span>
+          </button>
+        </div>
+        <div class="preference-group" role="group" aria-label="Language">
+          <button class="preference-button" type="button" data-lang-value="zh">
+            <span class="lang-zh">{{ profile.ui.controls.lang_zh.zh }}</span>
+            <span class="lang-en">{{ profile.ui.controls.lang_zh.en }}</span>
+          </button>
+          <button class="preference-button" type="button" data-lang-value="en">
+            <span class="lang-zh">{{ profile.ui.controls.lang_en.zh }}</span>
+            <span class="lang-en">{{ profile.ui.controls.lang_en.en }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>

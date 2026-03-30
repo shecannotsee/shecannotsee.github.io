@@ -5,7 +5,10 @@ layout: default
 
 <section class="home-section" id="about">
   <div class="section-label">
-    <h2>About</h2>
+    <h2>
+      <span class="lang-zh">{{ profile.ui.sections.about.zh }}</span>
+      <span class="lang-en">{{ profile.ui.sections.about.en }}</span>
+    </h2>
   </div>
 
   <div class="prose prose-home">
@@ -17,11 +20,15 @@ layout: default
         width="96"
         height="96"
       />
-      {{ profile.hero.intro }}
+      <span class="lang-zh">{{ profile.hero.intro.zh }}</span>
+      <span class="lang-en">{{ profile.hero.intro.en }}</span>
     </p>
     <ul>
       {% for item in profile.hero.facts %}
-        <li>{{ item }}</li>
+        <li>
+          <span class="lang-zh">{{ item.zh }}</span>
+          <span class="lang-en">{{ item.en }}</span>
+        </li>
       {% endfor %}
     </ul>
   </div>
@@ -29,14 +36,23 @@ layout: default
 
 <section class="home-section" id="projects">
   <div class="section-label">
-    <h2>Projects</h2>
+    <h2>
+      <span class="lang-zh">{{ profile.ui.sections.projects.zh }}</span>
+      <span class="lang-en">{{ profile.ui.sections.projects.en }}</span>
+    </h2>
   </div>
 
   <div class="prose prose-home">
-    <p>{{ profile.projects.intro }}</p>
+    <p>
+      <span class="lang-zh">{{ profile.projects.intro.zh }}</span>
+      <span class="lang-en">{{ profile.projects.intro.en }}</span>
+    </p>
     {% for group in profile.projects.groups %}
       {% if group.title %}
-        <p>{{ group.title }}</p>
+        <p>
+          <span class="lang-zh">{{ group.title.zh }}</span>
+          <span class="lang-en">{{ group.title.en }}</span>
+        </p>
       {% endif %}
       <ul class="plain-list">
         {% for item in group.items %}
@@ -47,28 +63,40 @@ layout: default
             {% else %}
               <span class="linked-row__text">{{ item.name }}</span>
             {% endif %}
-            <span class="linked-row__desc">{{ item.description }}</span>
+            <span class="linked-row__desc">
+              <span class="lang-zh">{{ item.description.zh }}</span>
+              <span class="lang-en">{{ item.description.en }}</span>
+            </span>
           </li>
         {% endfor %}
       </ul>
-      {% endfor %}
-    <p>如果你想交流项目、代码实现或者工程问题，可以直接给我发邮件。</p>
+    {% endfor %}
+    <p>
+      <span class="lang-zh">{{ profile.ui.copy.projects_closing.zh }}</span>
+      <span class="lang-en">{{ profile.ui.copy.projects_closing.en }}</span>
+    </p>
   </div>
 </section>
 
 <section class="home-section" id="posts">
   <div class="section-label">
-    <h2>Latest Posts</h2>
+    <h2>
+      <span class="lang-zh">{{ profile.ui.sections.posts.zh }}</span>
+      <span class="lang-en">{{ profile.ui.sections.posts.en }}</span>
+    </h2>
   </div>
 
   <div class="section-body">
-    {%- include post_list.html limit=6 show_more=true show_more_text="All posts" show_more_url="/archive.html" -%}
+    {%- include post_list.html limit=6 show_more=true show_more_zh=profile.ui.links.all_posts.zh show_more_en=profile.ui.links.all_posts.en show_more_url="/archive.html" -%}
   </div>
 </section>
 
 <section class="home-section" id="contact">
   <div class="section-label">
-    <h2>Get in touch</h2>
+    <h2>
+      <span class="lang-zh">{{ profile.ui.sections.contact.zh }}</span>
+      <span class="lang-en">{{ profile.ui.sections.contact.en }}</span>
+    </h2>
   </div>
 
   <div class="section-body">
@@ -82,7 +110,12 @@ layout: default
         <li class="entry-list__item">
           <span class="entry-list__marker">﹂</span>
           <a href="{{ contact_url }}">
-            {% if item.prefix %}<span class="entry-list__prefix">{{ item.prefix }}</span>{% endif %}{{ item.value }}
+            {% if item.prefix %}
+              <span class="entry-list__prefix lang-zh">{{ item.prefix.zh }}</span>
+              <span class="entry-list__prefix lang-en">{{ item.prefix.en }}</span>
+            {% endif %}
+            <span class="lang-zh">{{ item.value.zh }}</span>
+            <span class="lang-en">{{ item.value.en }}</span>
           </a>
         </li>
       {% endfor %}

@@ -15,6 +15,21 @@
   {%-seo title=false-%}
   {%-feed_meta-%}
 
+  <script>
+    (function () {
+      try {
+        var root = document.documentElement;
+        var savedTheme = localStorage.getItem("site-theme");
+        var theme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        var lang = localStorage.getItem("site-lang") || "zh";
+        root.dataset.theme = theme;
+        root.dataset.lang = lang;
+        root.lang = lang === "en" ? "en" : "zh-CN";
+        root.style.colorScheme = theme;
+      } catch (error) {}
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -23,4 +38,5 @@
   />
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon | relative_url }}" />
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" />
+  <script defer src="{{ '/assets/js/site_preferences.js' | relative_url }}"></script>
 </head>

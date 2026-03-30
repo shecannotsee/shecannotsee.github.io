@@ -11,13 +11,8 @@ permalink: /:slug.html
 
 favicon: "logo.png"
 
-remote_theme: riggraz/no-style-please
-
 theme_config:
-  appearance: "light"
-  back_home_text: "/home"
   date_format: "%Y-%m-%d"
-  show_description: false
 
 sass:
   style: :compressed

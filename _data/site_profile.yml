@@ -1,62 +1,155 @@
-navigation:
-  - title: /home
-    url: /
-  - title: /posts
-    url: /archive.html
-  - title: /about
-    url: /about_me.html
+ui:
+  navigation:
+    - title:
+        zh: /主页
+        en: /home
+      url: /
+    - title:
+        zh: /文章
+        en: /posts
+      url: /archive.html
+    - title:
+        zh: /关于
+        en: /about
+      url: /about_me.html
+  controls:
+    theme_light:
+      zh: 浅色
+      en: light
+    theme_dark:
+      zh: 深色
+      en: dark
+    lang_zh:
+      zh: 中文
+      en: 中文
+    lang_en:
+      zh: EN
+      en: EN
+  sections:
+    about:
+      zh: 关于
+      en: About
+    projects:
+      zh: 项目
+      en: Projects
+    posts:
+      zh: 最新文章
+      en: Latest Posts
+    contact:
+      zh: 联系方式
+      en: Get in touch
+  links:
+    all_posts:
+      zh: 查看全部文章
+      en: All posts
+    guide:
+      zh: 维护文档
+      en: Guide
+  copy:
+    projects_closing:
+      zh: 如果你想交流项目、代码实现或者工程问题，可以直接给我发邮件。
+      en: If you want to discuss projects, code, or engineering details, feel free to email me.
+    empty_posts:
+      zh: 还没有可展示的文章。
+      en: No posts to show yet.
+    footer_posts:
+      zh: 文章
+      en: Posts
+    footer_guide:
+      zh: 维护文档
+      en: Guide
 
 hero:
-  image: /logo.png
+  image: https://github.com/shecannotsee.png?size=256
   image_alt: shecannotsee
-  intro: >
-    我主要做 C++、Linux、构建系统和服务端工程相关的开发，也会把零散但有用的
-    实践经验整理成文章和项目笔记。
+  intro:
+    zh: >
+      我主要做 C++、Linux、构建系统和服务端工程相关的开发，也会把零散但有用的
+      实践经验整理成文章和项目笔记。
+    en: >
+      I work mostly on C++, Linux, build systems, and backend engineering, and I turn useful
+      notes from that work into articles and project write-ups.
   facts:
-    - 数学、金融学与计算机背景，目前专注软件开发与工程实践
-    - 长期记录 C++、协议、构建流程、项目结构与 Linux 使用经验
-    - 持续打磨一组以 she 开头命名的基础库与实验性项目
-    - 关注可维护性、清晰接口和可以长期复用的工程组织方式
+    - zh: 数学、金融学与计算机背景，目前专注软件开发与工程实践
+      en: Background in mathematics, finance, and computer science, now focused on software engineering
+    - zh: 长期记录 C++、协议、构建流程、项目结构与 Linux 使用经验
+      en: I write long-term notes on C++, protocols, build pipelines, project structure, and Linux
+    - zh: 持续打磨一组以 she 开头命名的基础库与实验性项目
+      en: I keep refining a set of foundational libraries and experiments under the she prefix
+    - zh: 关注可维护性、清晰接口和可以长期复用的工程组织方式
+      en: I care about maintainability, clear interfaces, and engineering structures that can last
 
 projects:
-  intro: 我长期维护并持续实验下面这些项目和方向：
+  intro:
+    zh: 我长期维护并持续实验下面这些项目和方向：
+    en: "These are the projects and directions I keep maintaining or exploring:"
   groups:
-    - title: Libraries & tools
+    - title:
+        zh: 基础库与工具
+        en: Libraries & tools
       items:
         - name: sheBase64
-          description: Base64 编解码实现，也是我试验项目结构、构建方式和测试组织的重要项目。
+          description:
+            zh: Base64 编解码实现，也是我试验项目结构、构建方式和测试组织的重要项目。
+            en: A Base64 implementation and one of my main playgrounds for project structure, builds, and tests.
           url: https://github.com/shecannotsee/sheBase64
         - name: sheLog
-          description: 采用生产者消费者模型的日志库，关注异步写入和接口清晰度。
+          description:
+            zh: 采用生产者消费者模型的日志库，关注异步写入和接口清晰度。
+            en: A logging library built around a producer-consumer model, with focus on async writes and clean APIs.
           url: https://github.com/shecannotsee/sheLog
         - name: sheIni
-          description: 在传统 ini 基础上扩展多级包含与数组等常用能力。
+          description:
+            zh: 在传统 ini 基础上扩展多级包含与数组等常用能力。
+            en: An ini parser extended with practical features such as nested includes and array-like values.
         - name: sheThreadPool
-          description: 基于 C++11 的线程池方案，经常作为其他项目的底层依赖。
-    - title: In progress
+          description:
+            zh: 基于 C++11 的线程池方案，经常作为其他项目的底层依赖。
+            en: A C++11 thread pool that I often reuse as a lower-level dependency in other projects.
+    - title:
+        zh: 持续推进中
+        en: In progress
       items:
         - name: sheNet
-          description: 面向 Linux 服务端场景的网络库，偏重基础通信能力而非跨平台。
+          description:
+            zh: 面向 Linux 服务端场景的网络库，偏重基础通信能力而非跨平台。
+            en: A networking library aimed at Linux server environments, focused on fundamentals rather than portability.
         - name: sheRaft
-          description: 仍以笔记和设计为主，计划在网络基础完善后继续推进。
+          description:
+            zh: 仍以笔记和设计为主，计划在网络基础完善后继续推进。
+            en: Still mostly design notes and early thinking, planned to move forward after networking basics mature.
         - name: data_structure_core
-          description: 希望系统重写一批常见和困难数据结构，保持实现与命名风格统一。
+          description:
+            zh: 希望系统重写一批常见和困难数据结构，保持实现与命名风格统一。
+            en: An attempt to systematically reimplement both common and harder data structures with a consistent style.
 
 contacts:
   items:
-    - label: Email
-      prefix: shecannotsee(at)
-      value: 163.com
+    - prefix:
+        zh: shecannotsee@
+        en: shecannotsee@
+      value:
+        zh: 163.com
+        en: 163.com
       url: mailto:shecannotsee@163.com
-    - label: GitHub
-      prefix: github.com/
-      value: shecannotsee
+    - prefix:
+        zh: github.com/
+        en: github.com/
+      value:
+        zh: shecannotsee
+        en: shecannotsee
       url: https://github.com/shecannotsee
-    - label: Blog Repo
-      prefix: github.com/shecannotsee/
-      value: shecannotsee.github.io
+    - prefix:
+        zh: github.com/shecannotsee/
+        en: github.com/shecannotsee/
+      value:
+        zh: shecannotsee.github.io
+        en: shecannotsee.github.io
       url: https://github.com/shecannotsee/shecannotsee.github.io
-    - label: Maintainer Guide
-      prefix: /
-      value: how_to_modify_this_project
+    - prefix:
+        zh: /
+        en: /
+      value:
+        zh: how_to_modify_this_project
+        en: how_to_modify_this_project
       url: /how_to_modify_this_project.html

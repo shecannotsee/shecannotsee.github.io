@@ -16,135 +16,150 @@ title: how to modify this project
 
 ## 现在这个站点是怎么组织的
 
-这次改版以后，首页不再依赖 `_data/menu.yml` 渲染，而是分成两类内容来源：
+现在首页由两部分组成：
 
-1. 固定信息：放在 `_data/site_profile.yml`
-2. 文章内容：放在 `_posts/` 目录
+1. 固定信息：`_data/site_profile.yml`
+2. 文章内容：`_posts/`
 
-也就是说：
+你平时最常改的地方通常是：
 
-- 你要改首页文案、导航、项目列表、联系方式：改 `_data/site_profile.yml`
-- 你要改“关于我”页面：改 `about_me.md`
-- 你要新增文章：在 `_posts/` 里新增 Markdown 文件
-- 你要改样式：改 `assets/css/main.scss`
-- 你要改首页结构：改 `_layouts/home.html`
+- 改首页文案、导航、中英文内容、联系方式：`_data/site_profile.yml`
+- 改深浅色和整体样式：`assets/css/main.scss`
+- 改主题和语言切换逻辑：`assets/js/site_preferences.js`
+- 改首页结构：`_layouts/home.html`
+- 改独立页面：`about_me.md`
+- 新增文章：`_posts/`
 
-## 最常改的文件
+## 最重要的文件
 
-### 1. 修改站点基础信息
+### 1. 站点配置
 
 文件：`_config.yml`
 
 这里控制：
 
-- 站点标题 `title`
-- 作者 `author`
-- 邮箱 `email`
-- 站点地址 `url`
-- 站点描述 `description`
+- `title`
+- `author`
+- `email`
+- `url`
+- `description`
+- 日期格式 `theme_config.date_format`
 
-如果你以后换域名，最先要改的就是这里的 `url`。
-
-## 2. 修改首页固定内容
+### 2. 首页数据
 
 文件：`_data/site_profile.yml`
 
 这个文件控制：
 
-- 顶部导航：`navigation`
-- 首页 About 段落和头像：`hero`
-- 首页项目区：`projects`
+- 导航文字：`ui.navigation`
+- 深浅色按钮和语言按钮文字：`ui.controls`
+- 首页 section 标题：`ui.sections`
+- 公共链接和页脚文字：`ui.links`、`ui.copy`
+- About 内容：`hero`
+- Projects 内容：`projects`
 - 联系方式：`contacts`
 
-当前首页风格是按 `https://kulpinski.dev/` 的窄栏单列布局实现的，所以首页内容也是围绕下面四个模块组织的：
+### 3. 主题和语言切换
 
-- About
-- Projects
-- Latest Posts
-- Get in touch
+相关文件：
 
-例如，你想增加一个导航项：
+- `assets/js/site_preferences.js`
+- `assets/css/main.scss`
+- `_includes/site_nav.html`
+
+说明：
+
+- 主题切换会在 `light` 和 `dark` 之间切换
+- 语言切换会在 `zh` 和 `en` 之间切换
+- 这两个设置会写入浏览器的 `localStorage`
+- 历史文章正文不会自动翻译，语言切换主要作用在首页和公共 UI
+
+## 如何修改首页内容
+
+### 修改导航
 
 ```yaml
-navigation:
-  - title: /home
-    url: /
-  - title: /posts
-    url: /archive.html
-  - title: /new-page
-    url: /new_page.html
+ui:
+  navigation:
+    - title:
+        zh: /主页
+        en: /home
+      url: /
 ```
 
-例如，你想修改 About 区内容：
+### 修改按钮文案
+
+```yaml
+ui:
+  controls:
+    theme_light:
+      zh: 浅色
+      en: light
+    theme_dark:
+      zh: 深色
+      en: dark
+    lang_zh:
+      zh: 中文
+      en: 中文
+    lang_en:
+      zh: EN
+      en: EN
+```
+
+### 修改 About
 
 ```yaml
 hero:
   image: /logo.png
   image_alt: shecannotsee
-  intro: >
-    这里写首页第一段介绍。
+  intro:
+    zh: >
+      这里写中文介绍。
+    en: >
+      Write the English introduction here.
   facts:
-    - 这里写第一条简介
-    - 这里写第二条简介
+    - zh: 这里写中文要点
+      en: Write the English point here
 ```
 
-例如，你想新增一个项目：
+### 修改 Projects
 
 ```yaml
 projects:
-  intro: 我长期维护并持续实验下面这些项目和方向：
+  intro:
+    zh: 我长期维护并持续实验下面这些项目和方向：
+    en: These are the projects I keep maintaining or exploring.
   groups:
-    - title: Libraries & tools
+    - title:
+        zh: 基础库与工具
+        en: Libraries & tools
       items:
         - name: sheBase64
-          description: 用来试验项目结构、构建方式和测试组织的基础项目。
+          description:
+            zh: 中文简介
+            en: English description
           url: https://github.com/shecannotsee/sheBase64
-        - name: newProject
-          description: 这里写这个项目的简介。
-          url: https://github.com/shecannotsee/newProject
 ```
 
-联系方式的写法如下：
+### 修改联系方式
 
 ```yaml
 contacts:
   items:
-    - label: GitHub
-      prefix: github.com/
-      value: shecannotsee
+    - prefix:
+        zh: github.com/
+        en: github.com/
+      value:
+        zh: shecannotsee
+        en: shecannotsee
       url: https://github.com/shecannotsee
 ```
 
-其中：
+## 如何新增文章
 
-- `prefix` 会显示成灰色前缀
-- `value` 会显示成主要文字
-- `url` 是点击后的地址
+文章目录：`_posts/`
 
-## 3. 修改“关于我”页面
-
-文件：`about_me.md`
-
-这是独立页面，使用 `page` 布局。你直接改正文内容即可。
-
-如果你想增加更多独立页面，也可以照着它新建一个 Markdown 文件：
-
-```md
----
-layout: page
-title: my new page
----
-
-这里写正文
-```
-
-然后再去 `_data/site_profile.yml` 里的 `navigation` 加一个入口。
-
-## 4. 新增文章并让首页自动显示
-
-文件目录：`_posts/`
-
-文章文件名必须符合 Jekyll 规则：
+文件名格式：
 
 ```text
 YYYY-MM-DD-title.md
@@ -156,7 +171,7 @@ YYYY-MM-DD-title.md
 2026-03-30-my_new_post.md
 ```
 
-文章头部至少这样写：
+头部最少写成这样：
 
 ```md
 ---
@@ -166,56 +181,40 @@ title: 我的新文章
 ---
 ```
 
-说明：
+新文章会自动进入首页的 `Latest Posts` 和总归档页。
 
-- `layout: post` 表示这是文章页
-- 新文章会自动出现在首页的 `Latest Posts` 区域
-- `archive.html` 会显示全部文章
+## 如何新增独立页面
 
-如果一篇文章既想出现在总列表，也想打分类，可以这样写：
+你可以照着 `about_me.md` 新建一个页面：
 
 ```md
 ---
-layout: post
-title: 某篇文章
-categories:
-  - blog
-  - cpp
+layout: page
+title: my new page
 ---
+
+这里写正文
 ```
 
-## 5. 修改首页和全站样式
+然后再到 `_data/site_profile.yml` 的 `ui.navigation` 里补一个入口。
+
+## 样式入口
 
 文件：`assets/css/main.scss`
 
-这里已经集中定义了：
+这里控制：
 
 - 颜色变量
-- 窄栏单列布局
-- 顶部导航和底部 footer
-- 首页 section 排版
-- 文章页和普通页面的 prose 样式
-- 列表项、代码块和手机端适配
+- 深浅色主题变量
+- 中英文显示切换规则
+- 顶部导航和按钮样式
+- 首页排版
+- 文章页和普通页面排版
+- 手机端适配
 
-如果你只想改颜色，优先修改文件开头的 `:root` 变量。
+如果你只改颜色，优先改文件顶部的变量区。
 
-## 6. 修改首页结构
-
-文件：`_layouts/home.html`
-
-这个文件控制首页模块顺序，比如：
-
-- About
-- Projects
-- Latest Posts
-- 联系方式
-
-如果你要新增一个新的首页模块，通常做法是：
-
-1. 先在 `_data/site_profile.yml` 增加对应数据
-2. 再在 `_layouts/home.html` 增加对应的 HTML/Liquid 模板
-
-## 7. 本地预览
+## 本地预览
 
 在项目目录 `/home/shecannotsee/Desktop/shecannotsee.github.io` 下执行：
 
@@ -223,40 +222,27 @@ categories:
 bundle exec jekyll serve
 ```
 
-然后打开：
+打开：
 
 ```text
 http://127.0.0.1:4000
 ```
 
-如果只是检查能否构建，也可以执行：
+如果只是检查构建：
 
 ```bash
 bundle exec jekyll build
 ```
 
-## 8. 发布方式
+## 发布
 
-这是 GitHub Pages 仓库，通常只要把修改推到默认分支，GitHub 就会自动重新构建页面。
+这是 GitHub Pages 仓库，通常 push 到默认分支后会自动更新。
 
-一个常见流程是：
+常见流程：
 
 ```bash
 git status
 git add .
-git commit -m "feat: refresh homepage design"
+git commit -m "feat: update homepage"
 git push
 ```
-
-## 9. 这次改版里最关键的文件
-
-如果你以后要继续维护，优先记住这几个：
-
-- `_data/site_profile.yml`
-- `_layouts/home.html`
-- `assets/css/main.scss`
-- `about_me.md`
-- `_posts/`
-- `_config.yml`
-
-只改文案时，优先不要碰布局文件；只改内容时，大多数情况下只需要改数据文件和文章文件。
