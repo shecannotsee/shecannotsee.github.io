@@ -1,0 +1,78 @@
+navigation:
+  - title: /home
+    url: /
+  - title: /archive
+    url: /archive.html
+  - title: /about
+    url: /about_me.html
+  - title: /libraries
+    url: /lib.html
+  - title: /guide
+    url: /how_to_modify_this_project.html
+
+hero:
+  eyebrow: Software engineer / C++ / systems
+  title: shecannotsee
+  summary: 记录我在 C++、Linux、构建系统、协议和工程化上的长期实践。
+  description: >
+    这里主要存放技术文章、项目笔记以及一些逐步打磨出来的基础库。页面结构参考
+    kulpinski.dev 的简单分区方式，但内容组织更偏向个人知识库与工程日志。
+  links:
+    - title: GitHub
+      url: https://github.com/shecannotsee
+    - title: Email
+      url: mailto:shecannotsee@163.com
+    - title: About Me
+      url: /about_me.html
+
+status:
+  title: Current Focus
+  items:
+    - 使用 C++ 构建可长期维护的基础库与服务端组件
+    - 持续整理 Linux、构建流程、网络与工具链笔记
+    - 把零散经验沉淀成可以回查和复用的文章
+
+highlights:
+  - title: Background
+    text: 数学、金融学与计算机背景，目前主要专注软件开发与工程实践。
+  - title: Writing
+    text: 文章主题集中在 C++、Linux、协议、性能、构建系统与项目结构。
+  - title: Approach
+    text: 优先记录能落地、能复用、能帮助自己长期维护项目的内容。
+
+projects:
+  title: Selected Projects
+  items:
+    - name: sheBase64
+      status: stable experiment
+      description: 用来试验项目结构、构建方式和测试组织的基础项目，也承担 Base64 编解码实现。
+      url: https://github.com/shecannotsee/sheBase64
+    - name: sheLog
+      status: implemented
+      description: 基于生产者消费者模型的日志库，关注异步写入、接口清晰度与可维护性。
+      url: https://github.com/shecannotsee/sheLog
+    - name: sheIni
+      status: evolving
+      description: 在传统 ini 格式基础上扩展多级包含和数组等常见能力，兼顾兼容性与实用性。
+    - name: sheNet
+      status: in progress
+      description: 面向 Linux 服务端场景的网络库，偏重基础通信能力而非跨平台。
+    - name: sheThreadPool
+      status: utility
+      description: 基于 C++11 的线程池方案，经常作为其他项目的底层依赖进行复用。
+
+contacts:
+  title: Get in touch
+  items:
+    - label: Email
+      value: shecannotsee@163.com
+      url: mailto:shecannotsee@163.com
+    - label: GitHub
+      value: github.com/shecannotsee
+      url: https://github.com/shecannotsee
+    - label: Blog Repo
+      value: shecannotsee.github.io
+      url: https://github.com/shecannotsee/shecannotsee.github.io
+    - label: Maintainer Guide
+      value: how_to_modify_this_project
+      url: /how_to_modify_this_project.html
